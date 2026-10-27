@@ -18,9 +18,9 @@ Most small businesses in India only deal by phone. The agent has to handle inter
 ## Stack
 
 - Bolna: runs the calls and the voice
-- LLM: Gemini 3.5 Flash with minimal reasoning decides each counter-offer in real time (backup: GPT-5.4 mini)
-- Speech: Sarvam for Hindi-English speech (to be confirmed)
-- Web app: type or speak the request, set the max price, watch the live transcript and savings
+- LLM: Gemini 3.6 Flash with minimal reasoning decides each counter-offer in real time (backup: GPT-4o mini)
+- Speech: Sarvam AI / Bolna pipeline for Hindi-English code-switching
+- Web app & backend: trigger parallel calls, manage webhooks, set max price, watch live transcript and savings
 
 ## Demo
 
@@ -28,24 +28,25 @@ A recorded call (audio and screen) between our agent and a real person, ending w
 
 ## Team and split of work
 
-Team of 2: Roansh Desai and Aashutosh Vyas.
+Team of 2: Roansh Desai and Aashutosh Vyas (@Aashutoshvyas2020).
+
+Roansh:
+- Web app & frontend
+- Backend service to fire parallel calls and build summary
+- Bolna call flow & webhook setup
+- Demo recording & repo
 
 Aashutosh:
 - Bolna account, API key and agent setup
 - Voice pick
-- Bargaining prompt and persona
-- "Price is higher" test calls
+- Bargaining prompt, persona & negotiation logic
+- LLM & latency tuning
+- Test calls
 - Pitch script
 
-Roansh:
-- Web app
-- Backend that fires the calls and builds the summary
-- LLM and latency tuning
-- Repo and form
-
 Both:
-- Demo video, recorded together on a real call
-- Pitch
+- Live call testing
+- Demo video & pitch review
 
 ## Timeline
 
