@@ -1,0 +1,16 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Hi, main Sauda, ek AI voice assistant hoon. Ek customer ke liye price aur availability check karni hai. Kya abhi baat kar sakte hain?
+  - generic: Haan, Demo Electronics. K1 black US layout new sealed stock mein hai. Ek keyboard 1200 rupees, tax included, pickup par koi aur charge nahi.
+  - generic: Dhanyavaad. Kya is price mein kuch behtar ho sakta hai?
+  - generic: 950 total kar sakte hain, saare tax included, koi aur fee nahi. Same keyboard hai. Aaj ke liye quote valid hai.
+  - generic: Dhanyavaad. Ek new sealed Acme K1 keyboard, black US layout, 1 piece, total 950 INR, saare tax included, pickup par koi extra charge nahi. Stock available hai, aur yeh quote aaj ke liye valid hai. Yeh sirf quote hai, koi order ya reservation nahi. Shukriya!
+  - generic: Haan, 950 final, aur kam nahi.
+  - generic: Samajh gaya. Ek new sealed Acme K1 keyboard, black US layout, 1 piece, total 950 INR, saare tax included, pickup par koi extra charge nahi. Stock available hai, quote aaj ke liye valid hai. Yeh sirf quote hai, koi order ya reservation nahi. Shukriya!
+  - textbox "Type your message..."
+  - button "Send" [active]:
+    - generic: Send
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

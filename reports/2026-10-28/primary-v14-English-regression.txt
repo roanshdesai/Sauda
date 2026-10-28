@@ -1,0 +1,14 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Hello, this is Sauda calling for a customer about prices and availability. Is now a good time?
+  - generic: yeah yeah श्री
+  - generic: I am checking availability for 32 working children's wristwatches with a Spider-Man design, suitable for children's wrists. Do you have 32 in stock?
+  - generic: Yes, all 32 are working childrens Spider-Man watches. 912 rupees each including every tax and item fee. Delivery to Marine Drive by November 3 costs 200 rupees. What price do you want?
+  - generic: Could you do 740 rupees per watch with free delivery for the 32 pieces?
+  - textbox "Type your message..."
+  - button "Send" [active]:
+    - generic: Send
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

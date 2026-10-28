@@ -1,0 +1,107 @@
+:
+  - heading "Conversation data" [level=2]
+  - generic "2ad5aeb7-33d4-434e-b695-0352cc00f300": 2ad5a...
+  - button "Copy" [active]:
+    - generic: Copy
+  - paragraph: Review the recording, transcript, summary, and extracted call data for this execution.
+  - heading "Recording" [level=3]
+  - button "Copy audio link":
+  - button "Download audio":
+  - button "Play":
+  - generic: 0:00.000
+  - generic: 2:13
+  - group "Playback speed":
+    - button "Playback speed 0.5x": 0.5x
+    - button "Playback speed 1x" [pressed]: 1x
+    - button "Playback speed 1.5x": 1.5x
+    - button "Playback speed 2x": 2x
+  - heading "Transcript" [level=3]
+  - button "Copy transcript":
+  - generic: Assistant
+  - paragraph: Namaste, main Sauda bol raha hoon. Ek customer ke liye price aur availability poochhni thi. Kya abhi baat ho sakti hai?
+  - generic: User
+  - paragraph: hello
+  - generic "Transcribed from the caller's audio but withheld from the agent's context, so it did not influence the reply": Not sent to agent
+  - generic: User
+  - paragraph: yeah yeah श्री
+  - generic: Assistant
+  - paragraph: Marine Drive Demo Gift Store se baat ho rahi hai? Hamein 32 working Spider-Man children's wristwatches chahiye. Kya aapke paas available hain?
+  - generic: User
+  - paragraph: yeah it's available
+  - generic: Assistant
+  - paragraph: Are these working watches suitable for children's wrist size, and what would be the price per piece including taxes?
+  - generic: User
+  - paragraph: एक
+  - generic "Transcribed from the caller's audio but withheld from the agent's context, so it did not influence the reply": Not sent to agent
+  - generic: User
+  - paragraph: yeah so
+  - generic: User
+  - paragraph: each they are suitable for kids risk and each watch will be around nine hundred and twelve rupees
+  - text: Interrupted
+  - generic: Assistant
+  - paragraph: Since we are looking for 32 pieces, could you do 740 rupees per watch with free delivery to Marine Drive?
+  - generic: User
+  - paragraph: सात सौ बत्तीस in english is what sorry
+  - generic: Assistant
+  - paragraph: Seven hundred forty rupees per watch. Can you do that with free delivery?
+  - generic: User
+  - paragraph: seven that's too low max i can go go like eight fifty
+  - generic "Transcribed from the caller's audio but withheld from the agent's context, so it did not influence the reply": Not sent to agent
+  - generic: User
+  - paragraph: seven that's too low max i can go go like eight fifty lowest
+  - generic: Assistant
+  - paragraph: Could you consider 790 rupees per watch with delivery included to Marine Drive?
+  - generic: User
+  - paragraph: eight fifty eight fifty and delivery will be
+  - generic: User
+  - paragraph: two hundred rupees
+  - text: Interrupted
+  - generic: Assistant
+  - paragraph: Could we settle at 820 rupees per watch with delivery included for the 32 pieces?
+  - generic: User
+  - paragraph: my best price i go for you eight thirty rupees and delivery eighty rupees
+  - generic: Assistant
+  - paragraph: Can you confirm if delivery can reach Marine Drive by 3 November 2026?
+  - generic: User
+  - paragraph: yeah it can
+  - generic: Assistant
+  - paragraph: Thank you. To recap, you have 32 working Spider-Man children's watches at 830 rupees per piece, with an 80 rupees delivery fee to Marine Drive by 3 November 2026. This is only a quote and not an order or reservation. Thank you for your time!
+  - generic: Hangup decided
+  - generic: · 1:57.2
+  - generic: Hangup queued
+  - generic: · 2:10.5
+  - generic: Participant disconnected
+  - generic: · 2:13.5
+  - heading "Summary" [level=3]
+  - paragraph
+  - generic: The conversation was between a buyer and a seller from Marine Drive Demo Gift Store discussing the purchase of 32 working Spider-Man children's wristwatches. The buyer confirmed availability and suitability for children, quoting a price around 912 rupees per watch. The parties negotiated the price and delivery cost, settling on 830 rupees per watch and an 80 rupee delivery fee to Marine Drive. The seller confirmed delivery by 3 November 2026. The summary clarified that this was a price quote, not an order or reservation.
+  - heading "Extracted Data" [level=3]
+  - button "Copy extracted data":
+  - generic: Sauda Quote Evidence
+  - text: quote evidence json
+  - text: objective
+  - generic: "null"
+  - text: confidence
+  - generic: "0.96"
+  - text: subjective
+  - generic: "{\"business\":\"Marine Drive Demo Gift Store\",\"requested_item_variant\":\"working Spider-Man children's wristwatches\",\"offered_item_variant\":\"working Spider-Man children's watches\",\"requested_quantity\":32,\"offered_quantity\":32,\"currency\":\"INR\",\"availability\":\"available\",\"first_quote_amount\":912,\"first_quote_basis\":\"unit\",\"final_quote_amount\":830,\"final_quote_basis\":\"unit\",\"tax_amount\":null,\"delivery_amount\":80,\"other_mandatory_fees\":null,\"unknown_fees\":[],\"first_all_in_total\":null,\"final_all_in_total\":null,\"comparable_terms\":\"match\",\"fulfilment\":\"delivery to Marine Drive by 3 November 2026\",\"local_datetime\":null,\"quote_expiry\":null,\"disposition\":\"quote_obtained\",\"commitment_made\":false,\"commitment_evidence\":[],\"evidence_quotes\":[\"yeah it's available\",\"each watch will be around nine hundred and twelve rupees\",\"my best price i go for you eight thirty rupees and delivery eighty rupees\",\"yeah it can\"]}"
+  - text: validation
+  - text: pattern
+  - generic: "^\\s*\\{[\\s\\S]*\\}\\s*$"
+  - text: is valid
+  - generic: "Yes"
+  - text: expected type
+  - generic: regex
+  - text: confidence label
+  - generic: High
+  - text: reasoning objective
+  - generic: "null"
+  - text: reasoning subjective
+  - generic: The transcript clearly states availability, the initial per-piece price, the final quoted per-piece price, and the delivery fee, along with the business name and requested quantity. The agent's recap is consistent with the seller's final price and delivery statements, and there is no order acceptance or reservation.
+  - generic: General
+  - text: Call Summary
+  - text: subjective
+  - generic: The conversation was between a buyer and a seller from Marine Drive Demo Gift Store discussing the purchase of 32 working Spider-Man children's wristwatches. The buyer confirmed availability and suitability for children, quoting a price around 912 rupees per watch. The parties negotiated the price and delivery cost, settling on 830 rupees per watch and an 80 rupee delivery fee to Marine Drive. The seller confirmed delivery by 3 November 2026. The summary clarified that this was a price quote, not an order or reservation.
+  - generic: Post call data will be available once the call status is marked as completed.
+  - button "Close":
+    - generic: Close

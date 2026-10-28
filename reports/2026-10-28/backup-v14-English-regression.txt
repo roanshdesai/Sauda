@@ -1,0 +1,12 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Hello, this is Sauda calling for a customer about prices and availability. Is now a good time?
+  - generic: yeah yeah श्री
+  - generic: Thank you! I’d like to check if you have 32 working children’s wristwatches with a Spider-Man design, suitable for kids’ wrists—not toy watches, but actual working digital or analog ones. Can you confirm if you have all 32 available, and what is the price per watch including all taxes and mandatory item charges?
+  - textbox "Type your message..."
+  - button "Send" [active]:
+    - generic: Send
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

@@ -1,0 +1,17 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Namaste, main Sauda bol raha hoon. Ek customer ke liye price aur availability poochhni thi. Kya abhi baat ho sakti hai?
+  - generic: Please speak English. We have five green mens kurtas, all size 38, same variety, ready for pickup near Breach Candy on 29 October at 7:30 PM. Price is 6200 rupees each including all taxes and fees. What price do you want?
+  - generic: Thank you for confirming the stock and pickup timing. For five pieces, can you do 4,400 rupees per piece, all charges included?
+  - generic: 4400 is too low. I can quote 5800 each. Can you improve your offer?
+  - generic: Thank you for considering. For five pieces, can you do 4,700 rupees per piece, all-inclusive?
+  - generic: Ab Hinglish mein baat karte hain. 4700 nahi ho sakta, 5300 kar sakta hoon. Aap thoda aur badhao.
+  - generic: Thoda aur adjust kar sakte hain—agar aap 4,900 per piece, sab charges mila ke, kar dein toh main quote le sakta hoon. Kya possible hai?
+  - generic: अब सिर्फ हिंदी में बोलिए। ठीक है, पाँचों हरे कुर्ते आकार 38 में 4900 रुपये प्रति कुर्ता, कुल 24500 रुपये, सभी कर और शुल्क सहित। कल 29 अक्टूबर शाम 7:30 बजे तैयार रहेंगे। यह अंतिम दाम है।
+  - generic: बहुत धन्यवाद, पुष्टि के लिए। तो, पाँच हरे कुर्ते, सभी आकार 38, 4900 रुपये प्रति कुर्ता, कुल 24500 रुपये, सभी कर और शुल्क सहित, 29 अक्टूबर शाम 7:30 बजे पिकअप के लिए तैयार मिलेंगे—यही अंतिम कोट है। यह सिर्फ एक कोटेशन है, कोई ऑर्डर या बुकिंग नहीं है। धन्यवाद।
+  - heading "Chat ended." [level=3]
+  - button "Start a new chat"
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

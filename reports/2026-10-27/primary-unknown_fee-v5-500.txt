@@ -1,0 +1,14 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Hi, main Sauda, ek AI voice assistant hoon. Ek customer ke liye price aur availability check karni hai. Kya abhi baat kar sakte hain?
+  - generic: Keyboard 900 hai, tax included, par pickup handling fee abhi pata nahi; baad mein batayenge.
+  - generic: Kya isse better price ho sakta hai? Aur pickup handling fee lagbhag kitni ho sakti hai?
+  - generic: 900 base final hai. Handling fee ka koi estimate nahi de sakte. K1 black US layout new sealed, quantity one available hai. Aaj pickup ho sakta hai.
+  - generic: Ek new sealed Acme K1 keyboard black US layout ka quote 900 INR plus unknown pickup handling fee hai, jo aaj pickup ke liye available hai. Yeh sirf ek quote hai, koi booking ya order nahi. Aapke samay ke liye shukriya!
+  - textbox "Type your message..."
+  - button "Send" [active]:
+    - generic: Send
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

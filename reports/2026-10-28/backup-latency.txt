@@ -1,0 +1,56 @@
+Latency per Turn
+T2
+T5
+T6
+T7
+T8
+T10
+T11
+T12
+T13
+T16
+T17
+T19
+T20
+T21
+T22
+T23
+0ms
+1500ms
+3000ms
+4500ms
+6000ms
+Transcriber finalizeTranscriber→LLMLLMTTFA→agent
+Average latency by component
+TRANSCRIBER AVG
+677
+ms
+deepgram · nova-3
+TRANSCRIBER→LLM AVG
+-132
+ms
+LLM AVG
+1.69
+s
+gpt-4.1
+VOICE AVG
+126
+ms
+sarvam · bulbul:v3
+P90 latency by component
+TRANSCRIBER P90
+1.12
+s
+turn 17
+LLM P90
+2.49
+s
+turn 22
+VOICE P90
+193
+ms
+turn 2
+OVERALL P90 LATENCY
+3.00
+s
+turn 6

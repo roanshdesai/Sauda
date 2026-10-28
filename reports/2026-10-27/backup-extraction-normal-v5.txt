@@ -1,0 +1,44 @@
+- dialog "Test Extractions" [active]:
+  - heading "Test Extractions" [level=2]
+  - paragraph: Test your extraction templates against sample or real transcripts to see how they perform before deploying.
+  - text: Sample Transcripts
+  - button "Sales Call"
+  - button "Support Call"
+  - button "Appointment"
+  - text: Transcript
+  - tablist:
+    - tab "Paste" [selected]
+    - tab "Import"
+  - tabpanel "Paste":
+    - textbox "Paste your conversation transcript here...": "Fictional test transcript. No real business was contacted. Agent: Main Sauda, AI assistant hoon. Demo Electronics se ek new sealed Acme K1 keyboard, black US layout, quantity 1 ka quote chahiye. Sirf quote, order nahi. Seller: Haan, Demo Electronics. Wahi exact new sealed keyboard quantity one stock mein hai. INR 1200 total, saare taxes included, pickup par koi extra charge nahi. Agent: Kya isse better price ho sakta hai? Seller: INR 950 total final, same keyboard quantity one, all taxes and mandatory fees included. Delivery nahi, customer pickup. Quote aaj ke liye valid hai. Agent: Samajh gaya. INR 950 all-inclusive quote hai. Yeh sirf quote hai, koi order ya reservation nahi. Seller: Haan, koi order nahi hua."
+    - generic: 721 characters
+  - checkbox "Override LLM model for test run"
+  - generic: Override LLM model for test run
+  - button "Run Test":
+    - text: Run Test
+  - generic: Extraction Results
+  - button "Copy results":
+  - generic: Extracted Data
+  - text: Sauda Quote Evidence
+  - text: quote evidence json
+  - text: subjective
+  - generic: "{\"business\":\"Demo Electronics\",\"requested_item_variant\":\"new sealed Acme K1 keyboard, black US layout\",\"offered_item_variant\":\"new sealed Acme K1 keyboard, black US layout\",\"requested_quantity\":1,\"offered_quantity\":1,\"currency\":\"INR\",\"availability\":\"available\",\"first_quote_amount\":1200,\"first_quote_basis\":\"total\",\"final_quote_amount\":950,\"final_quote_basis\":\"total\",\"tax_amount\":null,\"delivery_amount\":null,\"other_mandatory_fees\":null,\"unknown_fees\":[],\"first_all_in_total\":1200,\"final_all_in_total\":950,\"comparable_terms\":\"match\",\"fulfilment\":\"pickup\",\"local_datetime\":null,\"quote_expiry\":\"aaj ke liye valid hai\",\"disposition\":\"quote_obtained\",\"commitment_made\":false,\"commitment_evidence\":[\"Yeh sirf quote hai, koi order ya reservation nahi.\",\"Haan, koi order nahi hua.\"],\"evidence_quotes\":[\"Wahi exact new sealed keyboard quantity one stock mein hai.\",\"INR 1200 total, saare taxes included, pickup par koi extra charge nahi.\",\"INR 950 total final, same keyboard quantity one, all taxes and mandatory fees included. Delivery nahi, customer pickup.\"]}"
+  - text: objective
+  - generic: "null"
+  - text: confidence
+  - generic: "0.95"
+  - text: confidence label
+  - generic: High
+  - text: reasoning subjective
+  - generic: "The transcript explicitly mentions the business name 'Demo Electronics', the product as 'new sealed Acme K1 keyboard, black US layout' with quantity 1. The availability is confirmed with 'stock mein hai'. Two quotes are given: an initial quote INR 1200 all-inclusive and a final quote INR 950 all taxes and mandatory fees included, pickup only. It is clearly stated that no order or reservation was made, supporting a commitment_made of false. The evidence quotes are verbatim from the transcript."
+  - text: reasoning objective
+  - generic: "null"
+  - text: validation
+  - text: is valid
+  - generic: "Yes"
+  - text: expected type
+  - generic: regex
+  - text: pattern
+  - generic: "^\\s*\\{[\\s\\S]*\\}\\s*$"
+  - button "Close":
+    - generic: Close

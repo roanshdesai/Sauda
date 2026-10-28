@@ -1,0 +1,13 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Namaste, main Sauda bol raha hoon. Ek customer ke liye price aur availability poochhni thi. Kya abhi baat ho sakti hai?
+  - generic: We have five green kurtas in size 38, one matching variety. They will be ready near Breach Candy on 29 October at 7:30 PM. My final price is 6200 rupees each, taxes and all charges included. What price are you offering?
+  - generic: Would you be able to quote 4,400 rupees per kurta, all charges included, for all five pieces?
+  - generic: नहीं, 6200 रुपये प्रति कुर्ता ही अंतिम दाम है। अब दाम और कम नहीं होगा।
+  - generic: Samajh gaya. To 5 green kurtas size 38 ke liye 6,200 rupees per kurta, kul 31,000 rupees all inclusive, aur 29 October shaam 7:30 baje Breach Candy se pickup ready rahega. Yeh sirf ek quote hai, koi order ya booking nahi hai. Aapke samay ke liye bahut dhanyawaad! Aur namaste.
+  - heading "Chat ended." [level=3]
+  - button "Start a new chat"
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

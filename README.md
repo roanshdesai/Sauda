@@ -1,63 +1,56 @@
 # Sauda
 
-Sauda is a voice agent that phones shops and restaurants for you and bargains like a seasoned local. Built for the Bolna Symphony Buildathon (submission deadline: Sat 31 Oct 2026).
+Sauda calls shops to check availability and negotiate nonbinding price quotes in Hindi, Hinglish, or English. Built for the Bolna Symphony Buildathon by Roansh Desai and Aashutosh Vyas.
 
-## What it does
+## Current state
 
-You give it one request, for example:
+Two existing Bolna agents are configured and have been tested with a consenting roleplay recipient. This repository contains their prompts, configuration manifest, request examples, test evidence, and a small deterministic INR offer planner. The web app, webhook receiver, parallel-call orchestration, and automatic failover are not implemented here yet.
 
-- "Which of these 3 shops has this in stock, and at what price?"
-- "Book a table for 6 in Bandra"
+Sauda is **quote-only**: no purchases, reservations, deposits, or payment commitments. Prompt instructions are not a substitute for backend input validation, evidence checks, or budget enforcement.
 
-plus a max budget. It calls the places in parallel, talks to a real person, and negotiates hard but naturally: it counters every quote, pushes back ("can you do better?"), reads the mood of the person on the line, and never crosses your ceiling. It then returns one summary: who said yes, the final price and how much it saved.
+| Component | Current setting |
+|---|---|
+| Primary conversation model | Google Gemini 3.7 Flash |
+| Backup conversation model | OpenAI GPT-4.1 |
+| Voice / transcription | Sarvam Bulbul v3, Sumit / Deepgram nova-3 |
+| Conversation prompt | [v14](agents/prompts/prompt-v14.txt) |
+| Quote extraction | [v8](agents/extraction/extraction-prompt-v8.txt), GPT 5.4 Mini |
+| Hangup | [Prompt-based automatic closing](agents/hangup-prompt-v1.txt) |
 
-## Why voice
+See [current state](docs/current-state.md) and [configuration](agents/configuration.json) for verification boundaries and remaining work. Historic failed tests are retained and must not be presented as passes.
 
-Most small businesses in India only deal by phone. The agent has to handle interruptions and negotiate live in a way that feels human.
+## Negotiation behavior
 
-## Stack
+- Make concrete, nonbinding offers from the current request's budget; do not disclose the ceiling.
+- Use up to three distinct offers, increasing only after seller resistance. Respect a clear refusal or opt-out.
+- Match the seller's language and keep the closing in that language.
+- Confirm exact quantity/variant, unit versus total price, mandatory charges, and pickup/delivery timing.
+- Ask for free delivery when requested; record additional delivery fees separately when the user's budget allows them.
+- End after the final quote-only recap and thanks. Phone hangup evidence is recorded per test; a saved toggle alone is not proof.
 
-- Bolna: runs the calls and the voice
-- LLM: Gemini 3.6 Flash with minimal reasoning decides each counter-offer in real time (backup: GPT-4o mini)
-- Speech: Sarvam AI / Bolna pipeline for Hindi-English code-switching
-- Web app & backend: trigger parallel calls, manage webhooks, set max price, watch live transcript and savings
+## Prepare an INR offer plan
 
-## Demo
+Python 3, standard library only:
 
-A recorded call (audio and screen) between our agent and a real person, ending with the price dropping. The focus is on how it lowered the price.
+```sh
+python3 tools/quote_plan.py --quantity 32 --max-unit 844 --delivery additional
+python3 tools/quote_plan.py --quantity 5 --max-unit 5000 --strict
+python3 -m unittest discover -s tests -v
+```
 
-## Team and split of work
+The watch example has a merchandise ceiling of ₹27,008, with delivery additional. It proposes ₹740 / ₹790 / ₹820 per watch. The kurta example proposes ₹4,400 / ₹4,700 / ₹4,900. The planner uses exact decimal arithmetic, rejects invalid amounts/quantities, and leaves unknown delivery fees unknown. It does not validate an entire real-world request, interpret seller evidence, place a call, or authorize a purchase.
 
-Team of 2: Roansh Desai and Aashutosh Vyas (@Aashutoshvyas2020).
+## Repository layout
 
-Roansh:
-- Web app & frontend
-- Backend service to fire parallel calls and build summary
-- Bolna call flow & webhook setup
-- Demo recording & repo
+- `agents/`: saved configuration, versioned conversation/extraction prompts, and fictional test requests.
+- `reports/`: sanitized behavioral test outputs and live roleplay reviews.
+- `docs/current-state.md`: latest handoff and implementation limits.
+- `docs/archive/`: original project plans and earlier reports, retained as history.
+- `tools/quote_plan.py`: product-independent numeric offer preparation.
+- `tests/`: meaningful budget-scope and arithmetic checks.
 
-Aashutosh:
-- Bolna account, API key and agent setup
-- Voice pick
-- Bargaining prompt, persona & negotiation logic
-- LLM & latency tuning
-- Test calls
-- Pitch script
+Phone numbers, credentials, account email, recordings and raw UI screenshots are excluded. Never commit API keys. See [export manifest](docs/artifact-export.json) for the scope of the imported agent pack.
 
-Both:
-- Live call testing
-- Demo video & pitch review
+## Team responsibilities
 
-## Timeline
-
-- Tue 27 Oct: bargaining prompts ready
-- Wed 28 Oct: LLM running inside the Bolna call flow
-- Thu 29 Oct: everything plugged together
-- Fri 30 Oct: test and record the demo
-- Sat 31 Oct: submit
-
-## Notes
-
-- Never go over the user's max price.
-- Keep reasoning minimal for the live call, since latency matters more than depth.
-- Do not commit API keys. Share them off-repo.
+Roansh: frontend, backend orchestration, webhook integration, demo recording and repository. Aashutosh: prompt/persona, voice and LLM tuning, test calls and pitch. Both: live testing and demo review. The original plans are archived; feature descriptions there are goals rather than implementation evidence.

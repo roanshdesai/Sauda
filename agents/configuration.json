@@ -1,0 +1,53 @@
+{
+  "status_date": "2026-10-28",
+  "mode": "quote_only",
+  "primary": {
+    "id": "3bedc40e-9f88-491a-ad87-952be647f59b",
+    "dashboard_name": "Sauda | Hinglish Quotes | Primary v3",
+    "provider": "google",
+    "model": "Gemini 3.7 Flash"
+  },
+  "backup": {
+    "id": "f7d6dccb-944e-42dc-80ef-69c786195c40",
+    "dashboard_name": "Sauda | Hinglish Quotes | Backup v3",
+    "provider": "openai",
+    "model": "gpt-4.1"
+  },
+  "shared": {
+    "prompt": "prompts/prompt-v14.txt",
+    "max_output_tokens": 500,
+    "temperature": 0.2,
+    "voice_provider": "Sarvam",
+    "voice_model": "Bulbul v3",
+    "voice": "Sumit",
+    "transcriber_provider": "deepgram",
+    "transcriber_model": "nova-3",
+    "default_language": "Hindi",
+    "timezone": "Asia/Kolkata",
+    "routing": "India",
+    "welcome": "Hello, this is Sauda calling for a customer about prices and availability. Is now a good time?",
+    "hangup_enabled": true,
+    "hangup_prompt": "hangup-prompt-v1.txt",
+    "summary_enabled": true,
+    "extraction_field": "quote_evidence_json",
+    "extraction_model": "GPT 5.4 Mini",
+    "extraction_prompt": "extraction/extraction-prompt-v8.txt",
+    "extraction_format": "Free Text / Custom Regex",
+    "regex": "^\\s*\\{[\\s\\S]*\\}\\s*$",
+    "webhook_configured": false,
+    "function_tools": [],
+    "automatic_failover": false
+  },
+  "limitations": [
+    "Prompt-only blank-context rejection is unreliable; backend pre-dial validation required.",
+    "Regex checks shape only; parse/schema/evidence validation required.",
+    "Built-in summaries have guessed unsupported AM/PM; never use as authority.",
+    "Saved settings and targeted tests do not establish production readiness."
+  ],
+  "verification": {
+    "prompt_welcome_hangup_reload_verified": true,
+    "latest_voice_test_prompt": "v13",
+    "latest_text_regression_prompt": "v14",
+    "watch_phone_auto_hangup_verified": true
+  }
+}

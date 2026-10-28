@@ -1,0 +1,44 @@
+- dialog "Test Extractions" [active]:
+  - heading "Test Extractions" [level=2]
+  - paragraph: Test your extraction templates against sample or real transcripts to see how they perform before deploying.
+  - text: Sample Transcripts
+  - button "Sales Call"
+  - button "Support Call"
+  - button "Appointment"
+  - text: Transcript
+  - tablist:
+    - tab "Paste" [selected]
+    - tab "Import"
+  - tabpanel "Paste":
+    - textbox "Paste your conversation transcript here...": "Fictional test transcript. No real business was contacted. Agent: Demo Electronics se ek new sealed Acme K1 keyboard black US layout quantity one ka INR mein quote chahiye. Sirf quote. Seller: Exact item quantity one stock mein hai. Base price pehle 1000 tha, ab 900 INR, tax included. Pickup handling mandatory hai, fee abhi unknown hai; estimate nahi de sakte. Koi all-in total confirm nahi kar raha. Agent: Base 900 INR plus unknown handling. Total unknown hai. Yeh sirf quote, koi order ya reservation nahi. Seller: Haan."
+    - generic: 526 characters
+  - checkbox "Override LLM model for test run"
+  - generic: Override LLM model for test run
+  - button "Run Test":
+    - text: Run Test
+  - generic: Extraction Results
+  - button "Copy results":
+  - generic: Extracted Data
+  - text: Sauda Quote Evidence
+  - text: quote evidence json
+  - text: subjective
+  - generic: "{\"business\":\"Demo Electronics\",\"requested_item_variant\":\"Acme K1 keyboard black US layout\",\"offered_item_variant\":\"Acme K1 keyboard black US layout\",\"requested_quantity\":1,\"offered_quantity\":1,\"currency\":\"INR\",\"availability\":\"available\",\"first_quote_amount\":900,\"first_quote_basis\":\"unit\",\"final_quote_amount\":900,\"final_quote_basis\":\"unit\",\"tax_amount\":null,\"delivery_amount\":null,\"other_mandatory_fees\":null,\"unknown_fees\":[\"Pickup handling mandatory fee\"],\"first_all_in_total\":null,\"final_all_in_total\":null,\"comparable_terms\":null,\"fulfilment\":null,\"local_datetime\":null,\"quote_expiry\":null,\"disposition\":\"quote_obtained\",\"commitment_made\":false,\"commitment_evidence\":[\"Yeh sirf quote, koi order ya reservation nahi.\"],\"evidence_quotes\":[\"Exact item quantity one stock mein hai.\",\"Base price pehle 1000 tha, ab 900 INR, tax included.\",\"Pickup handling mandatory hai, fee abhi unknown hai; estimate nahi de sakte.\",\"Koi all-in total confirm nahi kar raha.\",\"Yeh sirf quote, koi order ya reservation nahi.\"]}"
+  - text: objective
+  - generic: "null"
+  - text: confidence
+  - generic: "1"
+  - text: confidence label
+  - generic: High
+  - text: reasoning subjective
+  - generic: The transcript explicitly states the business name 'Demo Electronics', item variant 'Acme K1 keyboard black US layout' with quantity one is available. The base price is given as 900 INR with tax included. A pickup handling fee is mandatory but unknown. The agent confirms this is only a quote without order or reservation. All these details directly extracted from the transcript give full confident evidence.
+  - text: reasoning objective
+  - generic: "null"
+  - text: validation
+  - text: is valid
+  - generic: "Yes"
+  - text: expected type
+  - generic: regex
+  - text: pattern
+  - generic: "^\\s*\\{[\\s\\S]*\\}\\s*$"
+  - button "Close":
+    - generic: Close

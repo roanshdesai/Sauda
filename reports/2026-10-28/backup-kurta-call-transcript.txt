@@ -1,0 +1,110 @@
+:
+  - heading "Conversation data" [level=2]
+  - generic "c8376244-9043-4527-8490-9dce5860b874": c8376...
+  - button "Copy" [active]:
+    - generic: Copy
+  - paragraph: Review the recording, transcript, summary, and extracted call data for this execution.
+  - heading "Recording" [level=3]
+  - button "Copy audio link":
+  - button "Download audio":
+  - button "Play":
+  - generic: 0:00.000
+  - generic: 3:19
+  - group "Playback speed":
+    - button "Playback speed 0.5x": 0.5x
+    - button "Playback speed 1x" [pressed]: 1x
+    - button "Playback speed 1.5x": 1.5x
+    - button "Playback speed 2x": 2x
+  - heading "Transcript" [level=3]
+  - button "Copy transcript":
+  - generic: Assistant
+  - paragraph: Hi, main Sauda, ek AI voice assistant hoon. Ek customer ke liye price aur availability check karni hai. Kya abhi baat kar sakte hain?
+  - generic: User
+  - paragraph: हां
+  - generic "Transcribed from the caller's audio but withheld from the agent's context, so it did not influence the reply": Not sent to agent
+  - generic: User
+  - paragraph: this call will be recorded hello
+  - generic: Assistant
+  - paragraph: Namaste, dhanyavaad! Main Breach Candy Demo Store se 5 green men's kurtas, sabhi size 38, ki availability aur price check karna chahta hoon. Kya aapke paas yeh 5 kurtas abhi available hain, aur 29 October 2026 tak pickup ke liye ready ho sakte hain?
+  - generic: User
+  - paragraph: hello
+  - generic "Transcribed from the caller's audio but withheld from the agent's context, so it did not influence the reply": Not sent to agent
+  - generic: User
+  - paragraph: हां yes
+  - generic "Transcribed from the caller's audio but withheld from the agent's context, so it did not influence the reply": Not sent to agent
+  - generic: User
+  - paragraph: हां हमारे पास दो variety है we have
+  - generic: User
+  - paragraph: we have green we have the expensive one for nine thousand and we have a cheaper one for six thousand two hundred
+  - text: Interrupted
+  - generic: Assistant
+  - paragraph: Dhanyavaad. Kya yeh prices per kurta hain ya poore 5 kurtas ke liye total price hai? Aur inmein sabhi taxes aur mandatory charges included hain?
+  - generic: User
+  - paragraph: this is
+  - generic: User
+  - paragraph: for कुर्ता and yeah all prices are included
+  - text: Interrupted
+  - generic: Assistant
+  - paragraph: Dhanyavaad. Kya aapke paas 5 green kurtas, size 38, ek hi variety mein available hain? Dono variety mein 5-5 pieces mil sakte hain ya sirf ek variety mein?
+  - generic: User
+  - paragraph: हां
+  - generic: User
+  - paragraph: you can get one variety like you can choose all five of one variety
+  - text: Interrupted
+  - generic: Assistant
+  - paragraph: Dhanyavaad. Kya 29 October 2026 tak pickup ke liye ready ho jayenge? Aap kis time tak
+  - generic: User
+  - paragraph: हां हां हां वैसा मैंने बोला मैंने बोला है भेज सकता है
+  - text: Interrupted
+  - generic: Assistant
+  - paragraph: "Dhanyavaad. Main abhi tak ka summary de raha hoon: 5 green men's kurtas, size 38,"
+  - generic: User
+  - paragraph: हां आपने बोला है पांच बार बोला है
+  - text: Interrupted
+  - generic: Assistant
+  - paragraph: Dhanyavaad. Aapne do variety batayi thi—ek 9000 per kurta aur ek 6200 per kurta, sabhi charges included. Kya ismein se thoda better price possible hai?
+  - generic: User
+  - paragraph: आपको क्या क्या price चाहिए
+  - generic: Assistant
+  - paragraph: Sirf 6200 per kurta wali variety ka best final all-inclusive rate bata sakte hain? 5 kurtas, size 38, sabhi charges ke
+  - generic: User
+  - paragraph: आप
+  - generic "Transcribed from the caller's audio but withheld from the agent's context, so it did not influence the reply": Not sent to agent
+  - generic: User
+  - paragraph: आपको क्या price चाहिए
+  - text: Interrupted
+  - generic: Assistant
+  - paragraph: Aap apna best final all-inclusive price bata
+  - generic: User
+  - paragraph: आपको क्या price चाहिए
+  - generic "Transcribed from the caller's audio but withheld from the agent's context, so it did not influence the reply": Not sent to agent
+  - generic: User
+  - paragraph: नहीं आप बोलो आपका price आपका plus बोलो
+  - text: Interrupted
+  - generic: Assistant
+  - paragraph: Main customer ki taraf se price decide nahi kar sakta. Aapka 6200 per kurta ka quote mila hai, lekin agar aap thoda aur kam kar sakte hain toh please apna best final price bata dijiye, sabhi charges ke saath.
+  - generic: User
+  - paragraph: मैं पांच सौ
+  - generic: Assistant
+  - paragraph: Aap keh rahe hain
+  - generic: User
+  - paragraph: पांच हज़ार पांच सौ के ले ले
+  - text: Interrupted
+  - generic: User
+  - paragraph: पांच हज़ार पांच सौ के
+  - text: Interrupted
+  - generic: Assistant
+  - paragraph: Dhanyavaad. Toh ab aapka final all-inclusive price 5500 per
+  - generic: User
+  - paragraph: हां हां यह यह final है यह final है
+  - text: Interrupted
+  - generic: Assistant
+  - paragraph: "Dhanyavaad. Toh aapka final all-inclusive quote hai: 5 green men's kurtas, size 38, ek hi variety mein, 5500 INR per kurta, total 27500 INR, sabhi charges included. 29 October 2026 tak pickup ke liye ready ho jayenge. Yeh sirf quote hai, koi order ya reservation nahi. Aapke samay ke liye shukriya."
+  - generic: User
+  - paragraph: thank you
+  - generic: Participant disconnected
+  - generic: · 3:19.7
+  - generic: Post call data will be available once the call status is marked as completed.
+  - generic: Post call data will be available once the call status is marked as completed.
+  - button "Close":
+    - generic: Close

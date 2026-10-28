@@ -1,0 +1,44 @@
+ [active]:
+  - heading "Test Extractions" [level=2]
+  - paragraph: Test your extraction templates against sample or real transcripts to see how they perform before deploying.
+  - text: Sample Transcripts
+  - button "Sales Call"
+  - button "Support Call"
+  - button "Appointment"
+  - text: Transcript
+  - tablist:
+    - tab "Paste" [selected]
+    - tab "Import"
+  - tabpanel "Paste":
+    - textbox "Paste your conversation transcript here...": "Regression fixture based on a consented roleplay call, not a real business quote. Agent: Do you have five green men's kurtas, size 38? Seller: Yes. This option is 5500 rupees per kurta, all taxes and mandatory charges included. Agent: Can these be ready for pickup on 29 October? What time? Seller: Saadhe saat baje ready hoga. Agent: Could you offer a better price? Seller: I can give you about five thousand two hundred. Agent: What would be your best and final all-inclusive rate for all 5 kurtas? Seller: Probably like five thousand and fifty. Agent: Thank you. So that is 5 green kurtas in size 38 at 5,050 rupees each all-inclusive, ready for pickup by 7:30 tomorrow. This is only a quote, no order or reservation. Seller: Ok thank you bye."
+    - generic: 746 characters
+  - checkbox "Override LLM model for test run"
+  - generic: Override LLM model for test run
+  - button "Run Test":
+    - text: Run Test
+  - generic: Extraction Results
+  - button "Copy results":
+  - generic: Extracted Data
+  - text: Sauda Quote Evidence
+  - text: quote evidence json
+  - text: subjective
+  - generic: "{\"business\":null,\"requested_item_variant\":\"green men's kurta, size 38\",\"offered_item_variant\":\"green men's kurta, size 38\",\"requested_quantity\":5,\"offered_quantity\":5,\"currency\":\"rupees\",\"availability\":\"available\",\"first_quote_amount\":5500,\"first_quote_basis\":\"unit\",\"final_quote_amount\":5050,\"final_quote_basis\":\"unit\",\"tax_amount\":null,\"delivery_amount\":null,\"other_mandatory_fees\":null,\"unknown_fees\":[],\"first_all_in_total\":null,\"final_all_in_total\":null,\"comparable_terms\":\"match\",\"fulfilment\":\"pickup\",\"local_datetime\":\"29 October, 7:30, AM/PM unconfirmed\",\"quote_expiry\":null,\"disposition\":\"quote_obtained\",\"commitment_made\":false,\"commitment_evidence\":[],\"evidence_quotes\":[\"This option is 5500 rupees per kurta, all taxes and mandatory charges included.\",\"Saadhe saat baje ready hoga.\",\"I can give you about five thousand two hundred.\",\"Probably like five thousand and fifty.\",\"Thank you. So that is 5 green kurtas in size 38 at 5,050 rupees each all-inclusive, ready for pickup by 7:30 tomorrow. This is only a quote, no order or reservation.\"]}"
+  - text: objective
+  - generic: "null"
+  - text: confidence
+  - generic: "0.95"
+  - text: confidence label
+  - generic: High
+  - text: reasoning subjective
+  - generic: The seller provided a first quoted unit price of 5500 rupees including all taxes and mandatory charges. Later, the seller offered a lower unit price down to 5050 rupees. The final quote is unit-based since the seller originally gave a per-item price and repeated a per-item figure in the final quote. Pickup readiness is stated as 'Saadhe saat baje' (7:30), with AM/PM not confirmed. The agent explicitly notes that no order or reservation was made; the seller's final reply is a generic acknowledgment without confirmation, so commitment_made is false. All extraction is directly from these transcript quotes with high confidence.
+  - text: reasoning objective
+  - generic: "null"
+  - text: validation
+  - text: is valid
+  - generic: "Yes"
+  - text: expected type
+  - generic: regex
+  - text: pattern
+  - generic: "^\\s*\\{[\\s\\S]*\\}\\s*$"
+  - button "Close":
+    - generic: Close

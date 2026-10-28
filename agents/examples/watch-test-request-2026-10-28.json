@@ -1,0 +1,52 @@
+{
+  "status": "roleplay_completed",
+  "mode": "consented_roleplay_test_quote_only",
+  "recipient": "Roansh, verified number ending 3834",
+  "business": "Marine Drive Demo Gift Store (fictional test business)",
+  "item": "Spider-Man watches for children",
+  "quantity": 32,
+  "currency": "INR",
+  "fulfilment": "delivery",
+  "area": "Marine Drive, Mumbai",
+  "required_by_local_date": "2026-11-03",
+  "timezone": "Asia/Kolkata",
+  "delivery_fee": "unknown; must explicitly ask",
+  "budget": {
+    "per_watch_max_inr": 844,
+    "quantity": 32,
+    "merchandise_total_max_inr": 27008,
+    "comparison": "less_than_or_equal",
+    "delivery": "additional permitted; ask for free delivery first; no delivery ceiling specified"
+  },
+  "watch_type": "any working childrens watch",
+  "exact_home_address": "not needed for roleplay or quote",
+  "order_or_reservation_authorized": false,
+  "negotiation_ladder": [
+    {
+      "unit_inr": 740,
+      "merchandise_total_inr": 23680
+    },
+    {
+      "unit_inr": 790,
+      "merchandise_total_inr": 25280
+    },
+    {
+      "unit_inr": 820,
+      "merchandise_total_inr": 26240
+    }
+  ],
+  "execution_id": "2ad5aeb7-33d4-434e-b695-0352cc00f300",
+  "duration_seconds": 134,
+  "cost_usd": 0.16,
+  "hangup": "Agent ended call",
+  "spoken_quote": {
+    "unit_inr": 830,
+    "quantity": 32,
+    "merchandise_subtotal_inr": 26560,
+    "delivery_inr": 80,
+    "subtotal_plus_delivery_inr": 26640,
+    "tax_inclusion": "not explicitly confirmed",
+    "not_a_real_shop_quote": true
+  },
+  "user_feedback": "Quite good; initial English reply language needed correction"
+}

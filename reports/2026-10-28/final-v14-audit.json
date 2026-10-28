@@ -1,0 +1,12 @@
+{
+  "primary": {
+    "prompt": true,
+    "welcome": true,
+    "hangup": "true"
+  },
+  "backup": {
+    "prompt": true,
+    "welcome": true,
+    "hangup": "true"
+  }
+}

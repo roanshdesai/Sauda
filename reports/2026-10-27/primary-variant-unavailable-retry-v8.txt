@@ -1,0 +1,12 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Hi, main Sauda, ek AI voice assistant hoon. Ek customer ke liye price aur availability check karni hai. Kya abhi baat kar sakte hain?
+  - generic: K1 black US layout new sealed quantity one stock mein nahi hai. K2 white US layout available hai 900 INR total, taxes included.
+  - generic: Samajh gaya, Acme K1 black out of stock hai. Main customer ko yeh note karwa dunga. Yeh sirf quote enquiry thi, koi order nahi hai. Aapke samay ke liye shukriya.
+  - textbox "Type your message..."
+  - button "Send" [active]:
+    - generic: Send
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

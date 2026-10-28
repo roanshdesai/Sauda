@@ -1,0 +1,11 @@
+Regression fixture based on a consented roleplay call, not a real business quote.
+Agent: Do you have five green men's kurtas, size 38?
+Seller: Yes. This option is 5500 rupees per kurta, all taxes and mandatory charges included.
+Agent: Can these be ready for pickup on 29 October? What time?
+Seller: Saadhe saat baje ready hoga.
+Agent: Could you offer a better price?
+Seller: I can give you about five thousand two hundred.
+Agent: What would be your best and final all-inclusive rate for all 5 kurtas?
+Seller: Probably like five thousand and fifty.
+Agent: Thank you. So that is 5 green kurtas in size 38 at 5,050 rupees each all-inclusive, ready for pickup by 7:30 tomorrow. This is only a quote, no order or reservation.
+Seller: Ok thank you bye.

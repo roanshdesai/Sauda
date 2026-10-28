@@ -1,0 +1,14 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Hi, main Sauda, ek AI voice assistant hoon. Ek customer ke liye price aur availability check karni hai. Kya abhi baat kar sakte hain?
+  - generic: Haan ji, kya chahiye?
+  - generic: Dhanyavaad. Kripya bataye, [business name], [item/service name], [variant], quantity, currency, fulfilment details, ya koi bhi zaroori information mujhe nahi mili hai. Maaf kijiye, mere paas request ki poori details nahi hain. Abhi main quote nahi le sakta. Aapke samay ke liye shukriya.
+  - generic: Haan ji, kya chahiye?
+  - generic: Maaf kijiye, mere paas request ki poori details nahi hain. Abhi main quote nahi le sakta. Aapke samay ke liye shukriya.
+  - textbox "Type your message..."
+  - button "Send" [active]:
+    - generic: Send
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

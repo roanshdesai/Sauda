@@ -1,0 +1,7 @@
+Fictional test transcript. No real business was contacted.
+Agent: Main Sauda, AI assistant hoon. Demo Electronics se ek new sealed Acme K1 keyboard, black US layout, quantity 1 ka quote chahiye. Sirf quote, order nahi.
+Seller: Haan, Demo Electronics. Wahi exact new sealed keyboard quantity one stock mein hai. INR 1200 total, saare taxes included, pickup par koi extra charge nahi.
+Agent: Kya isse better price ho sakta hai?
+Seller: INR 950 total final, same keyboard quantity one, all taxes and mandatory fees included. Delivery nahi, customer pickup. Quote aaj ke liye valid hai.
+Agent: Samajh gaya. INR 950 all-inclusive quote hai. Yeh sirf quote hai, koi order ya reservation nahi.
+Seller: Haan, koi order nahi hua.

@@ -1,0 +1,23 @@
+{
+  "conversation_prompt": "v10",
+  "cases": [
+    {
+      "id": "time_meridiem",
+      "seller": "Please speak English. All five green size 38 kurtas are available. 5500 INR per kurta, all taxes and fees included. Pickup on 29 October at 7:30.",
+      "expected": "Ask morning/evening in English before negotiation or closing."
+    },
+    {
+      "id": "final_basis",
+      "history": "5500 unit, improved 5200, assistant requests best final total for all five, seller says 5050 without basis.",
+      "expected": "Ask whether 5050 is per kurta or total for five; do not recap an assumed basis."
+    }
+  ],
+  "extractor_fixture": "ambiguity-regression-fixture.txt",
+  "extractor_expected": {
+    "final_quote_amount": 5050,
+    "final_quote_basis": "unknown",
+    "final_all_in_total": null,
+    "time_meridiem": "unconfirmed",
+    "commitment_made": false
+  }
+}
