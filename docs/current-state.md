@@ -30,6 +30,12 @@ User authorized up to US$5 total for testing/prompt iterations. Starting display
 
 Watch request: 32 working children's Spider-Man watches, any working digital/analog child-appropriate type; ₹844 maximum per watch including item taxes/mandatory fees, so merchandise cap ₹27,008. Delivery may be additional; request free delivery first, then obtain a separate fee. No numeric delivery ceiling authorized, and quote-only mode does not authorize payment. Kurta request had a different, strictly-below all-inclusive cap. Never merge those budget scopes.
 
+## Backend implementation (28 October continuation)
+
+`backend/` now supplies FastAPI request validation, Decimal offer generation, SQLite request/call persistence, explicit primary/backup selection, bounded concurrent dispatch, per-request/seller duplicate-call protection, authenticated webhooks verified by provider refetch, status refresh, uncertain-call reconciliation and aggregate quote assessments. See [backend guide](backend.md) for setup and API contracts. Live dialing defaults off and requires a server key plus a consenting-recipient allowlist. Only mocked-provider integration has been tested; no live backend-originated call or public webhook has been verified. The existing dashboard webhook setting is still unconfigured.
+
+Quotes remain marked for review. Schema and seller-substring checks do not prove semantic agreement, fee inclusion or comparable variants. No automatic recommendation, savings or verified inclusive total is emitted. Backend arithmetic checks cannot intercept a hosted voice agent's spoken commitments. No hard real-time dollar-spend limiter is implemented.
+
 ## Evidence and remaining risks
 
 - Original extractor returned prose or unsupported AM/PM and price basis. Revised v8/GPT 5.4 Mini passed targeted unknown-basis/whole-quantity-total/time-ambiguity and known-total fixtures; it is not deterministic or universally validated.
@@ -37,8 +43,8 @@ Watch request: 32 working children's Spider-Man watches, any working digital/ana
 - Both agents can close text sessions automatically. Backup v11 demonstrated the complete three-offer ladder and explicit English/Hinglish/Hindi switching. Primary v12 demonstrated automatic Hindi detection and quote-only auto-close. See versioned evidence; do not label all historic tests as v14.
 - Backup blank-context handling was unreliable in earlier tests. A backend must reject incomplete requests BEFORE dialing/welcome audio.
 - Repeated/compound questions and verbose recaps still occur. Unknown taxes/fees and exact product comparability require independent validation.
-- No actual web app, call orchestration, webhook receiver, parallel calling, comparison UI, automatic failover, real-business discovery, purchase handling, or submission has been built/proved here.
-- `tools/quote_plan.py` is a small arithmetic/offer preparation utility, not the missing backend. Its four tests cover watch/kurta scope, exact decimals, and rejected malformed input.
+- No actual web app, comparison UI, automatic failover, real-business discovery, purchase handling, or submission has been built/proved here. Backend call/webhook functionality is implemented but only mock-tested.
+- `tools/quote_plan.py` remains the small arithmetic utility reused by the backend; its original four tests cover watch/kurta scope, exact decimals and rejected malformed input.
 
 ## Repository handoff
 
@@ -46,4 +52,4 @@ Work prepared in `codex/sauda-agent-tests-2026-10-28`, based on main `8b1fa7d4f1
 
 Sanitized source pack and failed/successful test evidence are included. Full phone numbers, account email, credentials, raw screenshots and audio remain outside Git. Historic original README/context are archived, preserving team split while correcting unsupported current feature claims. No Pally messages during this continuation: user said Pally is down.
 
-Next: implement complete input and quote-evidence validation, connect backend/webhooks, then build the request/results interface. Any further call should use a complete request and a consenting verified recipient within the remaining test budget. Further unrequested real-business calls or purchases are not authorized.
+Next: configure the backend's private Bolna key and a public webhook deployment, verify one consenting backend-originated call, and build the request/results interface. Strengthen semantic evidence review before automatic recommendations. Any further call should use a complete request and a consenting verified recipient within the remaining test budget. Further unrequested real-business calls or purchases are not authorized.

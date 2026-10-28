@@ -4,7 +4,9 @@ Sauda calls shops to check availability and negotiate nonbinding price quotes in
 
 ## Current state
 
-Two existing Bolna agents are configured and have been tested with a consenting roleplay recipient. This repository contains their prompts, configuration manifest, request examples, test evidence, and a small deterministic INR offer planner. The web app, webhook receiver, parallel-call orchestration, and automatic failover are not implemented here yet.
+Two existing Bolna agents are configured and have been tested with a consenting roleplay recipient. The repository now includes a **FastAPI + SQLite backend** for validated requests, deterministic offers, bounded concurrent call dispatch, saved progress, authenticated webhooks and conservative quote assessment. Its integration tests use a mocked Bolna provider; the backend has not yet placed a live call or received a public webhook. The frontend and automatic failover remain unbuilt.
+
+See the [backend setup and API guide](docs/backend.md). Live calling is disabled by default; preview requests without spending credits. After local setup, interactive API docs are at `http://127.0.0.1:8000/docs`.
 
 Sauda is **quote-only**: no purchases, reservations, deposits, or payment commitments. Prompt instructions are not a substitute for backend input validation, evidence checks, or budget enforcement.
 
@@ -47,6 +49,8 @@ The watch example has a merchandise ceiling of ₹27,008, with delivery addition
 - `docs/current-state.md`: latest handoff and implementation limits.
 - `docs/archive/`: original project plans and earlier reports, retained as history.
 - `tools/quote_plan.py`: product-independent numeric offer preparation.
+- `backend/`: FastAPI endpoints, Bolna adapter, SQLite persistence and quote assessment.
+- `docs/backend.md`: local setup, endpoint contract, webhook configuration and operating limits.
 - `tests/`: meaningful budget-scope and arithmetic checks.
 
 Phone numbers, credentials, account email, recordings and raw UI screenshots are excluded. Never commit API keys. See [export manifest](docs/artifact-export.json) for the scope of the imported agent pack.
