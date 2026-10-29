@@ -1,0 +1,16 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Hi, main Sauda, ek AI voice assistant hoon. Ek customer ke liye price aur availability check karni hai. Kya abhi baat kar sakte hain?
+  - generic: Please speak English. All five green size 38 kurtas are available. 5500 INR per kurta, all taxes and mandatory fees included. Pickup at Breach Candy on 29 October at 7:30.
+  - generic: Thank you. Is the 7:30 pickup in the morning or evening? Also, is the 5500 INR price per kurta firm, or can you offer a better all-inclusive rate for all five?
+  - generic: Evening. I can do 5200 rupees per kurta, including all taxes and fees.
+  - generic: Thanks for the update. Just to confirm, that's 5200 INR per green men's kurta, size 38, all taxes and fees included, for a total of 26000 INR for five. All will be ready for pickup at Breach Candy on 29 October, 7:30 PM. This is just a quote, not an order or reservation. Thank you for your time.
+  - generic: Actually my final quote is 5050. I have not specified whether that number is per kurta or for all five.
+  - generic: Thank you for clarifying. Is 5050 INR the price per kurta, or is it the total for all five kurtas including all taxes and mandatory fees?
+  - textbox "Type your message..."
+  - button "Send" [active]:
+    - generic: Send
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

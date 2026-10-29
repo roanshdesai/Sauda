@@ -1,0 +1,19 @@
+This is a proposed recording script for the team's six-scene, approximately two-minute Sauda demo. It is not a claim that the app or agent works yet. The latest teammate report says the private main branch has only README.md. Use real build evidence when recording; omit any scene the build cannot demonstrate.
+
+0:00-0:15. Show three consenting test businesses or consenting role-play participants, with private phone numbers hidden. Say: "Finding an item locally means calling several shops, checking stock, and negotiating the same details each time. Sauda is being built to handle those calls in Hinglish."
+
+0:15-0:35. Show the actual app request screen, if implemented. Enter the exact item and variant, quantity and maximum all-in price using the real demo inputs. Say: "This request specifies the item, the quantity, and a hard limit including fees. The goal is a comparable quote from each shop, without placing an order."
+
+0:35-1:15. Play 30-40 seconds of an actual uninterrupted call segment. Let the business's actual first quote, the agent's Hinglish counter, and the actual final quote be heard. The desired counter is "Thoda high pad raha hai. Isse better price ho sakta hai?" Do not script a seller response or splice separate answers into one negotiation. Show the live transcript only if the app really streams it. If participants are role-playing shops, label the call as a role-play test. Obtain recording consent from participants before recording.
+
+1:15-1:35. If concurrent calls are implemented and demonstrated, show their real overlapping timestamps and transcript cards. Say: "Each call keeps the same item and price constraints, so the results can be compared." If calls are sequential, show that actual sequence and say: "Here are the results from the other calls." Never label sequential calls parallel.
+
+1:35-1:50. Show actual results: stock, first and final all-in totals, known and unknown fees, cap compliance, and no commitment made. Say: "The comparison separates availability from price. Savings are shown only for matching items and known totals; an unknown fee stays unknown." If a savings figure is used, read the value calculated from the actual call evidence. Do not insert an illustrative saving into the live result screen.
+
+1:50-2:00. Close: "Sauda, a voice agent that bargains for you. One request, clear quotes, and a hard price limit." Show https://github.com/roanshdesai/Sauda and identify it as the team's private repository if it remains private. Do not imply judges can open it without access.
+
+The short product pitch for rehearsal is: "Sauda is being built to call local businesses in natural Hinglish. Give it the exact request and a maximum total. It checks stock, asks for the best all-inclusive price, and returns comparable quotes. The agent is designed to stop at the price limit and collect quotes without making a purchase."
+
+After a real end-to-end test proves the features, the demo pitch can say: "Sauda calls local businesses in natural Hinglish. Give it the exact request and your maximum total. It checks stock, negotiates, and returns comparable quotes, including fees. This demo shows the actual quotes and the cap check. No order was placed."
+
+The recording date is unresolved: the agreed brief targets submission by October 29 because Roansh travels October 30, while the latest thread plans recording October 30 and submission October 31. Resolve that with Roansh before committing to a recording slot. No meeting time has been booked.

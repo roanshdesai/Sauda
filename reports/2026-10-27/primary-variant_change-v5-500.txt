@@ -1,0 +1,12 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Hi, main Sauda, ek AI voice assistant hoon. Ek customer ke liye price aur availability check karni hai. Kya abhi baat kar sakte hain?
+  - generic: K1 black US layout 1200 total hai. 900 mein K2 white mil jayega, US layout, tax included.
+  - generic: Customer ko sirf Acme K1 black US layout hi chahiye. Kya is K1 ke 1200 price par thoda better price ho sakta hai?
+  - textbox "Type your message..."
+  - button "Send" [active]:
+    - generic: Send
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

@@ -1,0 +1,12 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Hi, main Sauda, ek AI voice assistant hoon. Ek customer ke liye price aur availability check karni hai. Kya abhi baat kar sakte hain?
+  - generic: Wahi exact keyboard available hai. Final price 1000 total, all taxes included, no fees. Isse kam nahi hoga.
+  - generic: Theek hai, Acme K1 keyboard black US layout 1 piece available hai. Final all-inclusive price INR 1000 hai, pickup ke liye; koi order ya reservation nahi ki ja rahi. Yeh sirf quote hai, koi order ya reservation nahi.
+  - textbox "Type your message..."
+  - button "Send" [active]:
+    - generic: Send
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

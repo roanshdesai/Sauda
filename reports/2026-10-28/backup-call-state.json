@@ -1,0 +1,22 @@
+{
+  "execution_id": "c8376244-9043-4527-8490-9dce5860b874",
+  "agent_id": "f7d6dccb-944e-42dc-80ef-69c786195c40",
+  "initiated_at": "2026-10-28T18:08:00+05:30",
+  "recipient": "Roansh, verified number ending 3834",
+  "model": "gpt-4.1",
+  "prompt": "v10",
+  "extraction_model": "GPT 5.4 Mini",
+  "extraction_prompt": "v8",
+  "status": "completed",
+  "authorization": "User explicitly said Yes, call me now",
+  "recording_duration_seconds": 199.915,
+  "final_cost_usd": 0.286,
+  "provisional_cost_usd": 0.199,
+  "hangup_by": "Callee",
+  "user_feedback": "About the same",
+  "llm_avg_seconds": 1.69,
+  "transcriber_avg_ms": 677,
+  "voice_avg_ms": 126,
+  "overall_p90_seconds": 3.0,
+  "extraction_fetch": "Debugging UI: Failed to fetch extraction data"
+}

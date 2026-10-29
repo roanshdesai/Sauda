@@ -1,0 +1,104 @@
+:
+  - heading "Conversation data" [level=2]
+  - generic "e17aa893-ecc5-47fc-9478-90d9bd149674": e17aa...
+  - button "Copy" [active]:
+    - generic: Copy
+  - paragraph: Review the recording, transcript, summary, and extracted call data for this execution.
+  - heading "Recording" [level=3]
+  - button "Copy audio link":
+  - button "Download audio":
+  - button "Play":
+  - generic: 0:00.000
+  - generic: 2:24
+  - group "Playback speed":
+    - button "Playback speed 0.5x": 0.5x
+    - button "Playback speed 1x" [pressed]: 1x
+    - button "Playback speed 1.5x": 1.5x
+    - button "Playback speed 2x": 2x
+  - heading "Transcript" [level=3]
+  - button "Copy transcript":
+  - generic: Assistant
+  - paragraph: Hi, main Sauda, ek AI voice assistant hoon. Ek customer ke liye price aur availability check karni hai. Kya abhi baat kar sakte hain?
+  - generic: User
+  - paragraph: हां मैं बात कर सकता हूं
+  - generic: Assistant
+  - paragraph: Shukriya. Kya aapke paas men's green kurtas size 38 mein 5 pieces available hain?
+  - generic: User
+  - paragraph: अभी सिर्फ़ मेरे पास दो variety का है
+  - generic "Transcribed from the caller's audio but withheld from the agent's context, so it did not influence the reply": Not sent to agent
+  - generic: User
+  - paragraph: अभी सिर्फ़ मेरे पास दो variety का है एक
+  - generic: User
+  - paragraph: दस हज़ार का और एक
+  - generic: User
+  - paragraph: पांच हज़ार पांच हज़ार पांच सौ का
+  - text: Interrupted
+  - generic: Assistant
+  - paragraph: Kya dono options mein size 38 ke 5 pieces abhi available hain?
+  - generic: User
+  - paragraph: हां अभी available है
+  - generic: Assistant
+  - paragraph: Shukriya. 5,500 rupees per kurta wale option mein kya taxes aur baaki sabhi mandatory charges included hain?
+  - generic: User
+  - paragraph: हां सब कुछ included है
+  - generic: Assistant
+  - paragraph: Kya 29 October tak Breach Candy store se pickup ke liye yeh ready mil sakte hain? Aur kitne baje tak ready honge?
+  - generic: User
+  - paragraph: हां हां
+  - generic "Transcribed from the caller's audio but withheld from the agent's context, so it did not influence the reply": Not sent to agent
+  - generic: User
+  - paragraph: साढ़े सात बजे ready होगा
+  - generic: Assistant
+  - paragraph: Kya is 5,500 rupees per kurta ke rate par koi better price ya discount mil sakta hai?
+  - generic: User
+  - paragraph: hello i can speak in english my हिंदी is not that good
+  - generic: Assistant
+  - paragraph: No problem. Could you offer a better price or any discount on the 5,500 rupees per kurta option?
+  - generic: User
+  - paragraph: i think so i can give you about five thousand two hundred
+  - generic: Assistant
+  - paragraph: What would be your best and final all-inclusive rate for all 5 kurtas?
+  - generic: User
+  - paragraph: probably like
+  - generic: User
+  - paragraph: five thousand and fifty
+  - generic: Assistant
+  - paragraph: Thank you. So that is 5 green kurtas in size 38 at 5,050 rupees each all-inclusive, ready for pickup by 7:30 tomorrow. Yeh sirf quote hai, koi order ya reservation nahi. Aapke samay ke liye shukriya!
+  - generic: User
+  - paragraph: ok thank you bye
+  - generic: Assistant
+  - paragraph: Thank you, bye! Have a great day.
+  - generic: Participant disconnected
+  - generic: · 2:24.7
+  - heading "Summary" [level=3]
+  - paragraph
+  - generic: "The conversation was between an AI voice assistant and a user discussing the purchase of men's green kurtas in size 38. The user confirmed availability of 5 pieces from two price options: one for 10,000 rupees each and another for 5,500 rupees each, with all mandatory charges included in the latter. The assistant inquired about pickup readiness at the Breach Candy store by October 29, confirmed for 7:30 AM. After switching to English for clarity, the user offered a discounted price, settling on 5,050 rupees per kurta all-inclusive. The assistant clarified that this was a quote without any order or reservation, and the conversation ended."
+  - heading "Extracted Data" [level=3]
+  - button "Copy extracted data":
+  - generic: Sauda Quote Evidence
+  - text: quote evidence json
+  - text: objective
+  - generic: "null"
+  - text: confidence
+  - generic: "0.95"
+  - text: subjective
+  - generic: "{\"business\":null,\"requested_item_variant\":\"men's green kurtas size 38\",\"offered_item_variant\":\"men's green kurtas size 38 at 5,050 rupees each all-inclusive\",\"requested_quantity\":5,\"offered_quantity\":5,\"currency\":\"INR\",\"availability\":\"available\",\"first_quote_amount\":5500,\"first_quote_basis\":\"unit\",\"final_quote_amount\":5050,\"final_quote_basis\":\"unit\",\"tax_amount\":null,\"delivery_amount\":null,\"other_mandatory_fees\":null,\"unknown_fees\":[],\"first_all_in_total\":null,\"final_all_in_total\":null,\"comparable_terms\":null,\"fulfilment\":\"pickup at Breach Candy store by 7:30 PM on 29 October\",\"local_datetime\":null,\"quote_expiry\":null,\"disposition\":\"quote_obtained\",\"commitment_made\":false,\"commitment_evidence\":[],\"evidence_quotes\":[\"अभी सिर्फ़ मेरे पास दो variety का है एक दस हज़ार का और एक पांच हज़ार पांच हज़ार पांच सौ का\",\"हां अभी available है\",\"हां सब कुछ included है\",\"साढ़े सात बजे ready होगा\",\"i think so i can give you about five thousand two hundred\",\"probably like five thousand and fifty\",\"5 green kurtas in size 38 at 5,050 rupees each all-inclusive, ready for pickup by 7:30 tomorrow\"]}"
+  - text: validation
+  - text: pattern
+  - generic: "^\\s*\\{[\\s\\S]*\\}\\s*$"
+  - text: is valid
+  - generic: "Yes"
+  - text: expected type
+  - generic: regex
+  - text: confidence label
+  - generic: High
+  - text: reasoning objective
+  - generic: "null"
+  - text: reasoning subjective
+  - generic: The transcript clearly states availability of 5 kurtas in size 38, two price options with the lower priced one at 5,500 INR per kurta including all taxes and mandatory charges, the customer offering a discount down to 5,050 INR per kurta, and pickup ready by 7:30 PM on 29 October. No order or commitment was made, only a quote was given. Thus, the answer is directly extracted from explicit dialogue segments.
+  - generic: General
+  - text: Call Summary
+  - text: subjective
+  - generic: "The conversation was between an AI voice assistant and a user discussing the purchase of men's green kurtas in size 38. The user confirmed availability of 5 pieces from two price options: one for 10,000 rupees each and another for 5,500 rupees each, with all mandatory charges included in the latter. The assistant inquired about pickup readiness at the Breach Candy store by October 29, confirmed for 7:30 AM. After switching to English for clarity, the user offered a discounted price, settling on 5,050 rupees per kurta all-inclusive. The assistant clarified that this was a quote without any order or reservation, and the conversation ended."
+  - button "Close":
+    - generic: Close

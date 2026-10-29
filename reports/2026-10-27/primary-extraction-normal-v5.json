@@ -1,0 +1,35 @@
+{
+  "business": "Demo Electronics",
+  "requested_item_variant": "new sealed Acme K1 keyboard, black US layout",
+  "offered_item_variant": "new sealed Acme K1 keyboard, black US layout",
+  "requested_quantity": 1,
+  "offered_quantity": 1,
+  "currency": "INR",
+  "availability": "available",
+  "first_quote_amount": 1200,
+  "first_quote_basis": "total",
+  "final_quote_amount": 950,
+  "final_quote_basis": "total",
+  "tax_amount": null,
+  "delivery_amount": 0,
+  "other_mandatory_fees": null,
+  "unknown_fees": [],
+  "first_all_in_total": 1200,
+  "final_all_in_total": 950,
+  "comparable_terms": "match",
+  "fulfilment": "pickup",
+  "local_datetime": null,
+  "quote_expiry": "aaj ke liye valid hai",
+  "disposition": "quote_obtained",
+  "commitment_made": false,
+  "commitment_evidence": [
+    "Yeh sirf quote hai, koi order ya reservation nahi.",
+    "Haan, koi order nahi hua."
+  ],
+  "evidence_quotes": [
+    "Wahi exact new sealed keyboard quantity one stock mein hai.",
+    "INR 1200 total, saare taxes included, pickup par koi extra charge nahi.",
+    "INR 950 total final, same keyboard quantity one, all taxes and mandatory fees included. Delivery nahi, customer pickup.",
+    "Quote aaj ke liye valid hai."
+  ]
+}

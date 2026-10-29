@@ -1,0 +1,32 @@
+{
+  "business": "Marine Drive Demo Gift Store",
+  "requested_item_variant": "working Spider-Man children's wristwatches",
+  "offered_item_variant": "working Spider-Man children's watches",
+  "requested_quantity": 32,
+  "offered_quantity": 32,
+  "currency": "INR",
+  "availability": "available",
+  "first_quote_amount": 912,
+  "first_quote_basis": "unit",
+  "final_quote_amount": 830,
+  "final_quote_basis": "unit",
+  "tax_amount": null,
+  "delivery_amount": 80,
+  "other_mandatory_fees": null,
+  "unknown_fees": [],
+  "first_all_in_total": null,
+  "final_all_in_total": null,
+  "comparable_terms": "match",
+  "fulfilment": "delivery to Marine Drive by 3 November 2026",
+  "local_datetime": null,
+  "quote_expiry": null,
+  "disposition": "quote_obtained",
+  "commitment_made": false,
+  "commitment_evidence": [],
+  "evidence_quotes": [
+    "yeah it's available",
+    "each watch will be around nine hundred and twelve rupees",
+    "my best price i go for you eight thirty rupees and delivery eighty rupees",
+    "yeah it can"
+  ]
+}

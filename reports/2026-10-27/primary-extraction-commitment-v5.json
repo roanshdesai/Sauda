@@ -1,0 +1,33 @@
+{
+  "business": "Demo Electronics",
+  "requested_item_variant": "Acme K1 black US layout keyboard",
+  "offered_item_variant": "Acme K1 black US layout keyboard",
+  "requested_quantity": 1,
+  "offered_quantity": 1,
+  "currency": "INR",
+  "availability": "available",
+  "first_quote_amount": 950,
+  "first_quote_basis": "total",
+  "final_quote_amount": 950,
+  "final_quote_basis": "total",
+  "tax_amount": null,
+  "delivery_amount": null,
+  "other_mandatory_fees": null,
+  "unknown_fees": [],
+  "first_all_in_total": 950,
+  "final_all_in_total": 950,
+  "comparable_terms": null,
+  "fulfilment": null,
+  "local_datetime": null,
+  "quote_expiry": null,
+  "disposition": "quote_obtained",
+  "commitment_made": true,
+  "commitment_evidence": [
+    "Haan, order confirm kar do. Main customer ki taraf se purchase accept karta hoon.",
+    "Done."
+  ],
+  "evidence_quotes": [
+    "Stock available.",
+    "950 INR total all-inclusive, all taxes and fees included."
+  ]
+}

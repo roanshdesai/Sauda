@@ -1,0 +1,12 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Hi, main Sauda, ek AI voice assistant hoon. Ek customer ke liye price aur availability check karni hai. Kya abhi baat kar sakte hain?
+  - generic: Keyboard 950 hai, compulsory handling 100 extra. Total 1050, all taxes included. Ye final hai, kam nahi hoga.
+  - generic: Samajh gaya. To 1 new
+  - textbox "Type your message..."
+  - button "Send" [active]:
+    - generic: Send
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

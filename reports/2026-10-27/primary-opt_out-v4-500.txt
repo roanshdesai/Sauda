@@ -1,0 +1,12 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Hi, main Sauda, ek AI voice assistant hoon. Ek customer ke liye price aur availability check karni hai. Kya abhi baat kar sakte hain?
+  - generic: Dobara phone mat karna. Mujhe koi quote nahi dena.
+  - generic: "The user wants to opt out and refused to give a quote (\"Dobara phone mat karna. Mujhe koi quote nahi dena.\"). According to instructions: - \"Honor opt-outs; do not redial.\" - \"For refusal, wrong number, unavailable stock, unclear audio or callback request, record that distinct outcome.\" - \"Stop at a firm final price, refusal, discomfort or opt-out.\" - Keep concise natural Hinglish, be polite, do not promise callback, just end.Samajh gaya, maaf kijiye pareshani ke liye. Hum dobara call nahi karenge. Aapke samay ke liye shukriya."
+  - textbox "Type your message..."
+  - button "Send" [active]:
+    - generic: Send
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

@@ -1,0 +1,14 @@
+ [level=2]
+  - button "Restart chat":
+  - button "Close panel":
+  - generic: Hi, main Sauda, ek AI voice assistant hoon. Ek customer ke liye price aur availability check karni hai. Kya abhi baat kar sakte hain?
+  - generic: K1 black US layout 1200 total hai. 900 mein K2 white mil jayega, US layout, tax included.
+  - generic: Kya ek new sealed Acme K1 keyboard, black, US layout, quantity 1, abhi stock mein hai?
+  - generic: K1 black new sealed quantity one stock mein nahi hai. Sirf K2 white available hai 900 total, all taxes included.
+  - generic: Samajh gaya, K1 black US layout abhi stock mein nahi hai. Aapke samay ke liye shukriya.
+  - textbox "Type your message..."
+  - button "Send" [active]:
+    - generic: Send
+- region "Notifications (F8)":
+  - list
+- region "Notifications alt+T"

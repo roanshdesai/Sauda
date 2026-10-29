@@ -1,0 +1,33 @@
+{
+  "business": null,
+  "requested_item_variant": "green men's kurtas, size 38",
+  "offered_item_variant": "green men's kurtas, size 38",
+  "requested_quantity": 5,
+  "offered_quantity": 5,
+  "currency": "INR",
+  "availability": "available",
+  "first_quote_amount": 5500,
+  "first_quote_basis": "unit",
+  "final_quote_amount": 5050,
+  "final_quote_basis": "unknown",
+  "tax_amount": null,
+  "delivery_amount": null,
+  "other_mandatory_fees": null,
+  "unknown_fees": [],
+  "first_all_in_total": null,
+  "final_all_in_total": null,
+  "comparable_terms": null,
+  "fulfilment": "pickup",
+  "local_datetime": "29 October, 7:30, AM/PM unconfirmed",
+  "quote_expiry": null,
+  "disposition": "quote_obtained",
+  "commitment_made": false,
+  "commitment_evidence": [],
+  "evidence_quotes": [
+    "Yes. This option is 5500 rupees per kurta, all taxes and mandatory charges included.",
+    "Saadhe saat baje ready hoga.",
+    "I can give you about five thousand two hundred.",
+    "Probably like five thousand and fifty.",
+    "Thank you. So that is 5 green kurtas in size 38 at 5,050 rupees each all-inclusive, ready for pickup by 7:30 tomorrow."
+  ]
+}

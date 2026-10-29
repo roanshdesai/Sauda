@@ -1,0 +1,52 @@
+Latency per Turn
+T1
+T2
+T3
+T6
+T7
+T8
+T10
+T11
+T12
+T13
+T14
+T15
+0ms
+1000ms
+2000ms
+3000ms
+4000ms
+Transcriber finalizeTranscriber→LLMLLMTTFA→agent
+Average latency by component
+TRANSCRIBER AVG
+672
+ms
+deepgram · nova-3
+TRANSCRIBER→LLM AVG
+2
+ms
+LLM AVG
+2.34
+s
+gemini-3.7-flash
+VOICE AVG
+25
+ms
+sarvam · bulbul:v3
+P90 latency by component
+TRANSCRIBER P90
+1.62
+s
+turn 10
+LLM P90
+2.83
+s
+turn 11
+VOICE P90
+171
+ms
+turn 1
+OVERALL P90 LATENCY
+3.80
+s
+turn 7

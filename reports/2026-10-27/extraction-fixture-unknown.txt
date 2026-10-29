@@ -1,0 +1,5 @@
+Fictional test transcript. No real business was contacted.
+Agent: Demo Electronics se ek new sealed Acme K1 keyboard black US layout quantity one ka INR mein quote chahiye. Sirf quote.
+Seller: Exact item quantity one stock mein hai. Base price pehle 1000 tha, ab 900 INR, tax included. Pickup handling mandatory hai, fee abhi unknown hai; estimate nahi de sakte. Koi all-in total confirm nahi kar raha.
+Agent: Base 900 INR plus unknown handling. Total unknown hai. Yeh sirf quote, koi order ya reservation nahi.
+Seller: Haan.
