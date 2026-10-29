@@ -98,6 +98,15 @@ class Store:
             "request": json.loads(row["payload"]),
         }
 
+    def request_ids(self, limit=50):
+        with self.connect() as db:
+            return [
+                row["id"]
+                for row in db.execute(
+                    "SELECT id FROM requests ORDER BY created_at DESC LIMIT ?", (limit,)
+                ).fetchall()
+            ]
+
     def calls(self, request_id):
         with self.connect() as db:
             rows = db.execute(

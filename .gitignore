@@ -11,3 +11,5 @@ node_modules/
 .pytest_cache/
 .ruff_cache/
 *.sqlite3*
+frontend/dist/
+*.tsbuildinfo

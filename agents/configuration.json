@@ -14,7 +14,7 @@
     "model": "gpt-4.1"
   },
   "shared": {
-    "prompt": "prompts/prompt-v14.txt",
+    "prompt": "prompts/prompt-v15.txt",
     "max_output_tokens": 500,
     "temperature": 0.2,
     "voice_provider": "Sarvam",
@@ -22,10 +22,10 @@
     "voice": "Sumit",
     "transcriber_provider": "deepgram",
     "transcriber_model": "nova-3",
-    "default_language": "Hindi",
+    "default_language": "English",
     "timezone": "Asia/Kolkata",
     "routing": "India",
-    "welcome": "Hello, this is Sauda calling for a customer about prices and availability. Is now a good time?",
+    "welcome": "Hello, this is Sauda calling for a customer about prices and availability. Would you prefer English, Hindi, or Hinglish?",
     "hangup_enabled": true,
     "hangup_prompt": "hangup-prompt-v1.txt",
     "summary_enabled": true,
@@ -39,7 +39,23 @@
     "webhook_header": "X-Sauda-Webhook-Secret",
     "webhook_configuration_verified_date": "2026-10-29",
     "function_tools": [],
-    "automatic_failover": false
+    "automatic_failover": false,
+    "multilingual": {
+      "enabled": true,
+      "active_language": "en",
+      "language_switch_trigger": "caller_requested",
+      "audio_profiles": [
+        "en",
+        "hi"
+      ],
+      "conversation_styles": [
+        "English",
+        "Hindi",
+        "Hinglish"
+      ],
+      "style_selection": "at_opening_then_explicit_switch_only",
+      "configuration_reference": "multilingual-settings.json"
+    }
   },
   "limitations": [
     "Prompt-only blank-context rejection is unreliable; backend pre-dial validation required.",
@@ -50,10 +66,12 @@
   "verification": {
     "prompt_welcome_hangup_reload_verified": true,
     "latest_voice_test_prompt": "v13",
-    "latest_text_regression_prompt": "v14",
+    "latest_text_regression_prompt": "v15",
     "watch_phone_auto_hangup_verified": true,
     "webhook_url_and_header_saved_both_agents": true,
     "webhook_sample_reached_backend": true,
-    "backend_originated_live_call_verified": false
+    "backend_originated_live_call_verified": true,
+    "latest_phone_test_prompt": "v14",
+    "v15_phone_audio_verified": false
   }
 }

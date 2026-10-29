@@ -56,6 +56,9 @@ Money is represented as decimal strings in request/planner responses, avoiding b
 |---|---|---|
 | GET | `/health` | Liveness |
 | GET | `/v1/config` | Readiness flags and existing agent IDs; never credentials |
+| POST | `/v1/session` | Sign in with private operator access code; same-origin required |
+| DELETE | `/v1/session` | Clear the browser session |
+| GET | `/v1/requests?limit=50` | Newest saved requests (1–100); omit full transcripts from list |
 | POST | `/v1/requests` | Validate and persist a request + offer plan |
 | GET | `/v1/requests/{id}` | Request, saved calls, aggregate progress and quote assessments |
 | POST | `/v1/requests/{id}/preview` | Generate per-shop context; body `{"agent":"primary"}` or `backup` |
@@ -73,7 +76,7 @@ Call dispatch waits for the individual API responses, bounded by `SAUDA_DISPATCH
 3. Set `SAUDA_LIVE_CALLS_ENABLED=true` and restart when deliberately testing paid calls. No API calls are made at startup.
 4. Deploy behind HTTPS with a persistent private SQLite volume, one worker, ingress request/rate limits and protected operator access. The local server is not a public deployment.
 5. In **each existing agent → Extractions → Webhook Configuration**, set the public URL ending `/v1/webhooks/bolna`. Use **Add headers** to set `X-Sauda-Webhook-Secret` to the separate secret, enable relevant statuses, and save each agent. Do not put secrets in the URL. Configure proxy/application logs to omit bodies and authorization headers.
-6. Preview the complete request, then start an explicitly authorized roleplay call. Verify an actual webhook and final `completed` record. The backend integration has only been tested with a mocked provider so far.
+6. Preview the complete request, then start an explicitly authorized roleplay call. Verify an actual webhook and final `completed` record. This path was verified with a consenting watch roleplay on 29 October; see the [live report](../reports/2026-10-29/live-backend-and-ui.md).
 
 Until a public endpoint is configured, the operator can call `/refresh` to fetch execution status. The frontend can poll the saved request. The service does not run an automatic polling worker or stream live transcripts.
 
@@ -94,7 +97,7 @@ Webhook body fields never directly overwrite saved status or quotes. After check
 ## Quote assessment boundaries
 
 - Parse exactly one named `quote_evidence_json`, including category/subjective wrappers. Ignore summaries.
-- Validate the complete v8 schema and exact seller evidence substrings; an agent recap is not seller evidence.
+- Validate the complete v8 schema and seller evidence substrings after collapsing whitespace only; an agent recap is not seller evidence.
 - Independently calculate quoted quantity amounts with Decimal and flag potential ceiling violations. Never reinterpret unknown price basis, unavailable quantity or missing currency as valid.
 - Unknown taxes, fees and delivery are not zero. The original watch test produces arithmetic estimates ₹26,560 and ₹26,640, but no verified inclusive total or savings.
 - All extracted quotes currently require review and are ineligible for automatic recommendation. Exact substring matching does not prove that each numeric/variant claim is semantically supported. The v8 schema does not distinguish included taxes from unknown tax breakdowns. A richer evidence/reviewer workflow is needed before positive budget/comparability approval.
@@ -113,3 +116,11 @@ uv run ruff format --check backend tests/test_backend.py
 ```
 
 Tests exercise the API through FastAPI's HTTP test client and Bolna's real request contract through `httpx.MockTransport`; all provider traffic is simulated. Covers validation, persistence, request/call idempotency, concurrent reservations, partial failures, uncertain dispatch, reconciliation, webhook auth/forgery/replay, terminal ordering, identity mismatch and conservative extraction handling.
+
+## Browser workspace
+
+Run `npm ci && npm run build` inside `frontend/`, then restart the backend. It serves the built workspace at `/` and compiled assets at `/assets`. During frontend development, `npm run dev` proxies `/v1` to port 8000, preserving the Origin/Host pair.
+
+The UI sign-in exchanges the operator code for a signed, eight-hour HttpOnly SameSite=Strict cookie. HTTPS adds Secure. Cookie-authenticated mutations require an exact Origin scheme and host match and reject cross-site requests. Bearer authentication remains available for trusted API clients. Session logout removes the browser cookie; rotating `SAUDA_API_TOKEN` invalidates all existing sessions. No per-user accounts or server-side session revocation are implemented. Use one trusted operator, HTTPS and ingress rate limits before stable hosting.
+
+Saved-state polling is read-only. It never refreshes provider executions or starts calls automatically. The explicit Refresh control refetches provider state without redialing. API responses use no-store; the frontend bundle contains no API credentials. The temporary tunnel is a demo endpoint, not a durable deployment.

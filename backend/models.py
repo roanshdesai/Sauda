@@ -101,7 +101,7 @@ class ShoppingRequest(Model):
 
 
 def request_context(request: ShoppingRequest, seller: Seller) -> str:
-    """Generate the existing v14 prompt's request_context variable per seller."""
+    """Generate the active prompt's request_context variable per seller."""
     import json
 
     data = request.model_dump(mode="json", exclude={"sellers"})
@@ -118,13 +118,18 @@ def request_context(request: ShoppingRequest, seller: Seller) -> str:
         "mandatory charges. Additional delivery: ask for free delivery, then record the "
         "separate fee; no delivery cap is authorized. Confirm exact stock, variant, "
         "quantity, fees and arrival/pickup by required_by in Asia/Kolkata. "
-        "Area is not a street address; do not invent one. Match the seller's language.\n"
+        "Area is not a street address; do not invent one. Establish English, Hindi or Hinglish "
+        "at the beginning and keep that choice unless the seller explicitly requests a switch.\n"
         + json.dumps(data, ensure_ascii=False)
     )
 
 
 class StartCalls(Model):
     agent: Literal["primary", "backup"] = "primary"
+
+
+class SessionLogin(Model):
+    access_code: str = Field(min_length=32, max_length=256)
 
 
 class ReconcileCall(Model):

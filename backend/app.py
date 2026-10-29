@@ -8,15 +8,17 @@ from pathlib import Path
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import Depends, FastAPI, Header, HTTPException, Request
+from fastapi import Depends, FastAPI, Header, HTTPException, Query, Request
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from fastapi.staticfiles import StaticFiles
 
 from backend.bolna import BolnaClient, ProviderError
-from backend.models import ReconcileCall, ShoppingRequest, StartCalls, request_context
+from backend.models import ReconcileCall, SessionLogin, ShoppingRequest, StartCalls, request_context
 from backend.quotes import assess_quote
 from backend.store import TERMINAL, Conflict, Store
+from backend.ui import COOKIE, SESSION_SECONDS, issue_session, require_same_origin, valid_session
 
 ROOT = Path(__file__).resolve().parents[1]
 AGENTS = json.loads((ROOT / "agents/configuration.json").read_text())
@@ -105,12 +107,49 @@ def create_app(settings: Settings | None = None, provider=None):
     security = HTTPBearer(auto_error=False)
 
     async def operator(
+        request: Request,
         credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(security)],
     ):
-        if credentials is None or not hmac.compare_digest(
-            credentials.credentials.encode(), settings.api_token.encode()
-        ):
+        if credentials is not None:
+            if hmac.compare_digest(credentials.credentials.encode(), settings.api_token.encode()):
+                return
             raise HTTPException(401, "Valid operator bearer token required")
+        if not valid_session(request.cookies.get(COOKIE), settings.api_token):
+            raise HTTPException(401, "Sign in to your workspace")
+        if request.method not in {"GET", "HEAD", "OPTIONS"}:
+            require_same_origin(request)
+
+    @app.middleware("http")
+    async def privacy_headers(request: Request, call_next):
+        response = await call_next(request)
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["Referrer-Policy"] = "same-origin"
+        response.headers["X-Frame-Options"] = "DENY"
+        if request.url.path.startswith("/v1/"):
+            response.headers["Cache-Control"] = "no-store"
+        return response
+
+    @app.post("/v1/session")
+    def login(body: SessionLogin, request: Request):
+        require_same_origin(request)
+        if not hmac.compare_digest(body.access_code.encode(), settings.api_token.encode()):
+            raise HTTPException(401, "That workspace access code is not correct")
+        response = JSONResponse({"authenticated": True})
+        response.set_cookie(
+            COOKIE,
+            issue_session(settings.api_token),
+            max_age=SESSION_SECONDS,
+            httponly=True,
+            secure=request.url.scheme == "https",
+            samesite="strict",
+        )
+        return response
+
+    @app.delete("/v1/session", dependencies=[Depends(operator)])
+    def logout():
+        response = JSONResponse({"authenticated": False})
+        response.delete_cookie(COOKIE)
+        return response
 
     @app.exception_handler(RequestValidationError)
     async def validation_error(_request, exc):
@@ -229,6 +268,18 @@ def create_app(settings: Settings | None = None, provider=None):
     def get_request(request_id: UUID):
         return view(str(request_id))
 
+    @app.get("/v1/requests", dependencies=[Depends(operator)])
+    def list_requests(limit: Annotated[int, Query(ge=1, le=100)] = 50):
+        items = []
+        for request_id in store.request_ids(limit):
+            item = view(request_id)
+            # Transcripts are loaded only when a specific request is opened.
+            for call in item["calls"]:
+                if call.get("result"):
+                    call["result"].pop("transcript", None)
+            items.append(item)
+        return {"items": items}
+
     @app.post("/v1/requests/{request_id}/preview", dependencies=[Depends(operator)])
     def preview(request_id: UUID, body: StartCalls):
         _, shopping = lookup(request_id)
@@ -331,5 +382,13 @@ def create_app(settings: Settings | None = None, provider=None):
             raise HTTPException(404, "Execution not tracked; retry after dispatch is recorded")
         await refresh(call)  # Webhook body is only a notification, not quote/status authority.
         return {"accepted": True}
+
+    frontend = ROOT / "frontend/dist"
+    if frontend.is_dir():
+        app.mount("/assets", StaticFiles(directory=frontend / "assets"), name="assets")
+
+        @app.get("/", include_in_schema=False)
+        def workspace():
+            return FileResponse(frontend / "index.html", headers={"Cache-Control": "no-cache"})
 
     return app
