@@ -148,8 +148,7 @@ function Login({ onLogin }: { onLogin: () => void }) {
           <h1>
             You have better
             <br />
-            things to do
-            <br />
+            things to do <br />
             than haggle.
           </h1>
           <p>
