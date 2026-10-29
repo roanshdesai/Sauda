@@ -27,7 +27,7 @@ Latency: first call LLM avg 2.34s / overall P90 3.80s; backup LLM avg 1.69s / ov
 
 ## Budget and scope
 
-User authorized up to US$5 total for testing/prompt iterations. Starting displayed balance $9.97, latest refreshed $8.97 on 29 October: displayed reduction **$1.00**, subject to billing delay/rounding. No top-ups or subscriptions.
+User authorized up to US$5 total for testing/prompt iterations. Starting displayed balance $9.97, latest refreshed $8.93 after the 29 October language text tests: displayed reduction **$1.04**, subject to billing delay/rounding. No top-ups or subscriptions.
 
 Watch request: 32 working children's Spider-Man watches, any working digital/analog child-appropriate type; ₹844 maximum per watch including item taxes/mandatory fees, so merchandise cap ₹27,008. Delivery may be additional; request free delivery first, then obtain a separate fee. No numeric delivery ceiling authorized, and quote-only mode does not authorize payment. Kurta request had a different, strictly-below all-inclusive cap. Never merge those budget scopes.
 

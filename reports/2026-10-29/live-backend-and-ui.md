@@ -19,7 +19,7 @@ One call was placed to the user's verified, consenting test number via `POST /v1
 
 While waiting, only saved request GETs were polled. The record moved to in-progress and then completed automatically through the authenticated webhook; no manual refresh or direct execution fetch caused that transition. The final saved update timestamp was `2026-10-29T13:47:53.262775+00:00`. A provider fetch and later manual refresh were used only after completion to inspect evidence and re-evaluate whitespace handling.
 
-Live calling was disabled again after the test. The allowlist retains only the consenting user. The provider's displayed balance was $8.97 after the call, versus the original $9.97 baseline, approximately $1.00 used against the authorized $5 ceiling, subject to delayed billing/rounding. No funds were added. Full recipient, credentials, recording URL and execution payload remain in ignored private files.
+Live calling was disabled again after the test. The allowlist retains only the consenting user. The provider's displayed balance was $8.97 after the call, versus the original $9.97 baseline, approximately $1.00 used at that point. After the v15 text tests, a reload showed $8.93: approximately $1.04 used against the authorized $5 ceiling, subject to delayed billing/rounding. No funds were added. Full recipient, credentials, recording URL and execution payload remain in ignored private files.
 
 ## Evidence correction
 
@@ -47,7 +47,7 @@ Targeted backup text test with the fictional watch context:
 | Explicit request for only Hindi | Devanagari Hindi; ₹820 offer |
 | Explicit request for Hinglish, final quote and delivery | Mixed Hindi-English recap and quote-only close; chat ended |
 
-The primary also stayed fully English for its ₹740 opening and ₹790 counter after an incidental “Haan”. Both retained the selected English style in these targeted turns.
+The primary also stayed fully English for its ₹740 opening and ₹790 counter after an incidental “Haan”. Both retained the selected English style in these targeted turns. The primary also acknowledged an explicit stop request in English and ended the text chat without another question.
 
 These text checks do not exercise phone recognition, pronunciation, language-profile handoff audio or latency. **v15 needs a consented phone retest**, including separate Hindi/Hinglish openings. The earlier auto-hangup call used v14.
 
