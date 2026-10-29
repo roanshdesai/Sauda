@@ -4,7 +4,7 @@ Sauda calls shops to check availability and negotiate nonbinding price quotes in
 
 ## Current state
 
-Two existing Bolna agents are configured and have been tested with a consenting roleplay recipient. The repository now includes a **FastAPI + SQLite backend** for validated requests, deterministic offers, bounded concurrent call dispatch, saved progress, authenticated webhooks and conservative quote assessment. Its integration tests use a mocked Bolna provider; the backend has not yet placed a live call or received a public webhook. The frontend and automatic failover remain unbuilt.
+Two existing Bolna agents are configured and have been tested with a consenting roleplay recipient. The repository now includes a **FastAPI + SQLite backend** for validated requests, deterministic offers, bounded concurrent call dispatch, saved progress, authenticated webhooks and conservative quote assessment. Both agents' webhooks are configured to a temporary local tunnel; a Bolna sample reached the authenticated endpoint, then failed execution-ID validation. Integration tests use a mocked provider, and a complete backend-originated live call remains unverified. The frontend and automatic failover remain unbuilt.
 
 See the [backend setup and API guide](docs/backend.md). Live calling is disabled by default; preview requests without spending credits. After local setup, interactive API docs are at `http://127.0.0.1:8000/docs`.
 

@@ -6,7 +6,7 @@ Primary `3bedc40e-9f88-491a-ad87-952be647f59b`: Google Gemini 3.7 Flash. Backup 
 
 The configured welcome is now neutral English: “Hello, this is Sauda calling for a customer about prices and availability. Is now a good time?” No upfront AI announcement; answer honestly if asked whether AI. Match clear Hindi/Hinglish/English after the seller speaks, ignoring isolated erroneous language tokens. Both prompts, welcomes and enabled hangup settings were verified after full reload. Dashboard names retain v3 for identity continuity; do not infer prompt version from the name.
 
-Automatic hangup is enabled using `agents/hangup-prompt-v1.txt`. Call Summary remains enabled. Quote evidence uses extraction prompt v8 and GPT 5.4 Mini, Free Text with an outer-object regex. The backend must still parse and validate the JSON, evidence and arithmetic. No webhook, purchase/function tool or automatic failover configured.
+Automatic hangup is enabled using `agents/hangup-prompt-v1.txt`. Call Summary remains enabled. Quote evidence uses extraction prompt v8 and GPT 5.4 Mini, Free Text with an outer-object regex. The backend must still parse and validate the JSON, evidence and arithmetic. Authenticated webhooks are configured on both agents as of 29 October; no purchase/function tool or automatic failover is configured.
 
 ## Live tests (consenting roleplay recipient only)
 
@@ -32,7 +32,9 @@ Watch request: 32 working children's Spider-Man watches, any working digital/ana
 
 ## Backend implementation (28 October continuation)
 
-`backend/` now supplies FastAPI request validation, Decimal offer generation, SQLite request/call persistence, explicit primary/backup selection, bounded concurrent dispatch, per-request/seller duplicate-call protection, authenticated webhooks verified by provider refetch, status refresh, uncertain-call reconciliation and aggregate quote assessments. See [backend guide](backend.md) for setup and API contracts. Live dialing defaults off and requires a server key plus a consenting-recipient allowlist. Only mocked-provider integration has been tested; no live backend-originated call or public webhook has been verified. The existing dashboard webhook setting is still unconfigured.
+`backend/` now supplies FastAPI request validation, Decimal offer generation, SQLite request/call persistence, explicit primary/backup selection, bounded concurrent dispatch, per-request/seller duplicate-call protection, authenticated webhooks verified by provider refetch, status refresh, uncertain-call reconciliation and aggregate quote assessments. See [backend guide](backend.md) for setup and API contracts. Live dialing defaults off and requires a server key plus a consenting-recipient allowlist. Complete call integration is still mock-tested only.
+
+On 29 October, the backend restarted with the verified private Bolna key. Both existing agents saved the user's temporary Cloudflare tunnel URL and matching `X-Sauda-Webhook-Secret`; fresh API reads showed only webhook URL, webhook headers and update timestamp changed. Prompts/tasks were unchanged. Public checks returned 401 without the secret and 404 for an authenticated unknown UUID. Bolna's dashboard Send test reached the endpoint and returned 422 because its sample execution ID was invalid. This proves public routing and header delivery, not an accepted real-call result. Live calling remains disabled and the recipient allowlist empty. The tunnel depends on the user's running Mac/process and its URL must be updated after replacement. See [setup verification](../reports/2026-10-29/webhook-setup.md).
 
 Quotes remain marked for review. Schema and seller-substring checks do not prove semantic agreement, fee inclusion or comparable variants. No automatic recommendation, savings or verified inclusive total is emitted. Backend arithmetic checks cannot intercept a hosted voice agent's spoken commitments. No hard real-time dollar-spend limiter is implemented.
 
@@ -43,7 +45,7 @@ Quotes remain marked for review. Schema and seller-substring checks do not prove
 - Both agents can close text sessions automatically. Backup v11 demonstrated the complete three-offer ladder and explicit English/Hinglish/Hindi switching. Primary v12 demonstrated automatic Hindi detection and quote-only auto-close. See versioned evidence; do not label all historic tests as v14.
 - Backup blank-context handling was unreliable in earlier tests. A backend must reject incomplete requests BEFORE dialing/welcome audio.
 - Repeated/compound questions and verbose recaps still occur. Unknown taxes/fees and exact product comparability require independent validation.
-- No actual web app, comparison UI, automatic failover, real-business discovery, purchase handling, or submission has been built/proved here. Backend call/webhook functionality is implemented but only mock-tested.
+- No actual web app, comparison UI, automatic failover, real-business discovery, purchase handling, or submission has been built/proved here. Backend call processing is mock-tested; public webhook routing/authentication was checked with a sample, but complete real-call integration is pending.
 - `tools/quote_plan.py` remains the small arithmetic utility reused by the backend; its original four tests cover watch/kurta scope, exact decimals and rejected malformed input.
 
 ## Repository handoff
@@ -52,4 +54,4 @@ Work prepared in `codex/sauda-agent-tests-2026-10-28`, based on main `8b1fa7d4f1
 
 Sanitized source pack and failed/successful test evidence are included. Full phone numbers, account email, credentials, raw screenshots and audio remain outside Git. Historic original README/context are archived, preserving team split while correcting unsupported current feature claims. No Pally messages during this continuation: user said Pally is down.
 
-Next: configure the backend's private Bolna key and a public webhook deployment, verify one consenting backend-originated call, and build the request/results interface. Strengthen semantic evidence review before automatic recommendations. Any further call should use a complete request and a consenting verified recipient within the remaining test budget. Further unrequested real-business calls or purchases are not authorized.
+Next: add the consenting recipient to the private allowlist when ready, explicitly enable live calls, verify one backend-originated call and its final webhook, then build the request/results interface. Replace the temporary tunnel with stable hosting for submission. Strengthen semantic evidence review before automatic recommendations. Any further call should use a complete request and a consenting verified recipient within the remaining test budget. Further unrequested real-business calls or purchases are not authorized.

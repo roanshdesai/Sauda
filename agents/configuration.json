@@ -1,5 +1,5 @@
 {
-  "status_date": "2026-10-28",
+  "status_date": "2026-10-29",
   "mode": "quote_only",
   "primary": {
     "id": "3bedc40e-9f88-491a-ad87-952be647f59b",
@@ -34,7 +34,10 @@
     "extraction_prompt": "extraction/extraction-prompt-v8.txt",
     "extraction_format": "Free Text / Custom Regex",
     "regex": "^\\s*\\{[\\s\\S]*\\}\\s*$",
-    "webhook_configured": false,
+    "webhook_configured": true,
+    "webhook_environment": "temporary_local_tunnel",
+    "webhook_header": "X-Sauda-Webhook-Secret",
+    "webhook_configuration_verified_date": "2026-10-29",
     "function_tools": [],
     "automatic_failover": false
   },
@@ -48,6 +51,9 @@
     "prompt_welcome_hangup_reload_verified": true,
     "latest_voice_test_prompt": "v13",
     "latest_text_regression_prompt": "v14",
-    "watch_phone_auto_hangup_verified": true
+    "watch_phone_auto_hangup_verified": true,
+    "webhook_url_and_header_saved_both_agents": true,
+    "webhook_sample_reached_backend": true,
+    "backend_originated_live_call_verified": false
   }
 }
