@@ -1,29 +1,38 @@
 # Sauda workspace
 
-React + TypeScript + Vite, served by the FastAPI backend. The interface reads real saved requests and call results. It does not seed invented quotes or claim unverified savings.
+React, TypeScript and Vite, using the existing same-origin FastAPI service. The approved public landing is unchanged.
 
 ## Run
 
-From `frontend/`, run `npm ci` then `npm run build`. Start or restart the backend using the command in the README and open http://127.0.0.1:8000. Use the private `SAUDA_API_TOKEN` as the workspace access code; never paste it into source, screenshots, issue comments or chat. An eight-hour HttpOnly session keeps the raw code out of browser storage. There are no separate user accounts yet.
+From the repository root, use `./private/dev-backend.sh` and `./private/dev-frontend.sh`. Open `http://127.0.0.1:5173/#/workspace`. The access code is the local `SAUDA_API_TOKEN`; never put it in source, frontend environment variables, screenshots or logs. Authentication uses an eight-hour HttpOnly session, not browser storage.
 
-For development, run `npm run dev` in `frontend/` with the backend running on port 8000. Vite proxies `/v1` so cookie authentication and same-origin checks still apply. Do not add credentials to Vite environment variables.
+Build with `npm run build` from `frontend/`. Vite retains the `/v1` proxy to port 8000.
 
-## Working flow
+## Interface
 
-1. Create a brief with the product, acceptable variant, quantity, budget basis, fulfilment, area, deadline and consenting test recipients. Creating it never dials.
-2. Review the generated offers. Choose the existing primary or backup agent. Starting calls requires a separate confirmation, server-side live-call enablement and an allowlisted recipient.
-3. Saved-state polling updates progress every five seconds while the page is visible. It does not start provider polling or redial. The explicit Refresh control fetches provider state if a webhook is delayed.
-4. Review the quote breakdown, extracted excerpt and full saved transcript. All quotes remain marked Needs review. The displayed total is arithmetic from extraction, not a verified final invoice. Multiple quotes can be selected by shop; there is no automatic winner.
+- Sign-in contains only the brand, access-code field, Continue and service errors.
+- The workspace contains a searchable request list, New request and sign out. On phones, Requests returns from a saved request to the list.
+- One inline form saves the existing request schema. Options holds strict-budget, additional delivery and extra recipients. Required fields remain visible. Recipient consent is never prechecked.
+- Saving never calls anyone. Identical submission retries reuse an idempotency key; changed payloads receive their own keys.
+- Saved details show actual request facts, call status and quote results. Native disclosures contain call options, quote breakdown, evidence, transcripts and nonbinding proposals.
+- No eyebrow labels, promotional paragraphs, dashboard counters, activity/setup tabs or decorative call-progress stages remain.
+- Warm stone and ink continue the public hero palette. `src/workspace.css` owns workspace styling; the obsolete desk, brief and call-room stylesheets were removed.
 
-The Activity tab lists saved calls. Workspace shows actual readiness flags. Calling is currently paused after the supervised test. A clearly labelled UI-test gift-bag request verifies form submission and has zero calls; it is not a customer order.
+## Service and safety
 
-## Design
+`src/App.tsx` owns authentication, selection, list/search and five-second saved-state polling while visible. `components/workspace/RequestEditor.tsx` saves through `POST /v1/requests`; `RequestDetail.tsx` retains call creation and explicit provider refresh. `api.ts`, `types.ts` and backend contracts are unchanged.
 
-The user requested a Vercel-inspired direction and supplied `UI-LINKS.md`. The design uses Geist and Geist Mono, restrained borders, a warm white canvas, quiet typography and blue/amber status accents. Sauda has its own S mark and shopping/negotiation content. No Vercel logo or copied application screens.
+Calls require backend readiness and explicit confirmation of consenting test recipients. The server still checks every number against its allowlist. Unknown dispatch warns against retrying. No live transcript or microphone activity is fabricated. Quote amounts remain extracted estimates, not seller agreement or orders; missing totals and fees remain unconfirmed.
 
-References inspected:
+No request-delete endpoint exists. Do not create disposable requests in the operator database for UI checks.
 
-- [Vercel Geist](https://vercel.com/geist/introduction), [typography](https://vercel.com/geist/typography), [colors](https://vercel.com/geist/colors).
-- [Vercel DESIGN.md reference](https://github.com/voltagent/awesome-design-md/tree/main/design-md/vercel), found in the user's resource catalogue.
+## Verification — 31 October 2026
 
-Desktop and 390px mobile views were checked in Chrome. Native dialog focus, labelled fields, keyboard controls, reduced-motion handling and a separate call confirmation are implemented. This is a functional local first version, awaiting the user's visual review and stable deployment.
+- TypeScript and Vite production build passed.
+- Browser smoke used the actual FastAPI application with temporary SQLite storage, ephemeral authentication and calls disabled. Its Vite proxy targeted that isolated backend; the operator database was not mutated.
+- Verified invalid/valid login, HttpOnly cookie, empty local storage, past-date/invalid-phone/duplicate-phone/consent validation, real request persistence, exact budget and recipient fields, idempotent replay, search, logout and subsequent authenticated reload.
+- Checked list, editor and saved-detail navigation at 360, 390, 768 and 1440px without horizontal document overflow. Desktop/mobile screenshots were inspected in ignored `private/workspace-review/`.
+- Actual operator-service sign-in and request reads also passed without saved-data mutation or call POSTs.
+- No calls were placed, calling settings changed, credentials exposed, push performed or backend code changed.
+- The operator service had no saved quotes. Populated quote/evidence/transcript rendering and enabled-call dispatch were not exercised; no live audio verification is claimed. Existing backend tests were not rerun for this frontend-only change.
+- Temporary smoke servers, databases and scripts were removed after verification.
