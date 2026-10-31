@@ -1,45 +1,52 @@
-# Sauda — You shop. We bargain.
+# Sauda — Voice agents. Reimagined
 
-An alternate public landing page and shopping workspace using the user's UI-LINKS.md catalogue. The selected direction is light, playful tech with bold colours and layered components: violet type, lime quote cards, yellow shop cards and lavender controls.
+The public frontend follows the user-selected [Liquid Sculpture Hero](https://21st.dev/@gughigug/components/liquid-sculpture-hero): warm stone `#EBE9E5`, ink `#151514`, metallic filaments, Geist headings and Instrument Serif italic accents. The headline is “Voice agents. Reimagined”. The private shopping desk and backend contracts are unchanged by this integration.
 
-## Branches and local preview
+## Local preview
 
-- Original: `codex/sauda-live-test-ui`, preserved at `8f107dec6ef21f364e0611c753ad8033b58a265b`.
-- Alternate: `codex/sauda-expressive-ui`; draft PR #3 targets the original UI branch.
-- Checkout: `/Users/roanshdesai/Developer/Sauda-expressive`.
-- Landing: `http://127.0.0.1:5174/`; workspace: `http://127.0.0.1:5174/#/workspace`.
-- Start the existing backend on port 8000, then run `npm ci` and `npm run dev -- --port 5174 --strictPort` from `frontend/`.
-- `npm run build` produces the frontend distribution. The dev server proxies `/v1` to port 8000 with same-origin session handling.
+- Branch: `aashu/frontend-omp`; no push or deployment is part of this work.
+- Landing: `http://127.0.0.1:5173/`; workspace: `http://127.0.0.1:5173/#/workspace`.
+- Existing launchers: `./private/dev-backend.sh` and `./private/dev-frontend.sh`.
+- Frontend build: `npm run build` from `frontend/`.
+- Vite retains the same-origin `/v1` proxy to port 8000. Never expose the local access code or enable paid calls for visual testing.
 
-The alternate has not been deployed to a public host. No credentials, environment file, database or recordings are committed.
+## Selected assets and components
 
-## Design library components
+- `frontend/src/components/ui/liquid-sculpture-hero.tsx`: Guglielmo Giannattasio’s original WebGL2 flow-map/GPGPU particle engine and hero layout, adapted from the [source mirror](https://github.com/N00385644/liquid-hero/blob/dce8ea5a723fa29ee06a6f57e9e99c80d6bab2d0/src/components/ui/liquid-sculpture-hero.tsx). The creator credit remains visible. Light, dark and portrait images from the supplied 21st CDN URLs are served locally from `frontend/public/sculpture/`.
+- `encrypted-text.tsx`: the supplied 21st-style progressive character reveal. Screen readers receive stable complete text; visual character flips update independently of reveal progress.
+- `animated-hero.tsx`: the supplied spring-driven rotating-word pattern, used below the primary hero for “Price. Availability. Delivery.” Real workspace and playground links replace the template’s article, signup and call links.
+- `ascii-silk.tsx` and `ascii-silk-renderer.ts`: Canvas2D implementation of the supplied procedural silk/voxel recipe. The source is generated, not a photograph. Three-CSS-pixel cells, color correction, tint, post-effects and flicker animate independently of audio or calling state. Other primitive modes, glow points and reveal masks are supported by the renderer. The silk field is a procedural interpretation: the JSON does not include the original GLSL, so pixel-identical shader output is not claimed.
+- Existing [Libraries.dev](https://libraries.dev/) Liquid, VoiceBeam and BorderBeam remain in the explicitly simulated playground and closing action. No paid catalog components were copied.
+- Geist, Geist Mono and Instrument Serif are bundled locally. The hero does not fetch Google Fonts at runtime.
 
-- [Libraries.dev Thinking Orbs](https://libraries.dev/orbs), installed as `thinking-orbs`: animated agent centre with light theme, pause and reduced-motion handling.
-- [Libraries.dev Liquid Metal](https://libraries.dev/metal), installed as `metal-fx`: WebGL metallic action border with the library's non-WebGL fallback.
-- [Magic UI](https://magicui.design/docs/components): adapted Animated Beam, Border Beam, Blur Fade and Number Ticker. MIT notice retained; local styles, pause/reduced motion and Indian number formatting added.
-- [Motion](https://motion.dev/docs/react): chat transitions, language selection, layout indicators, accordion transitions, magnetic links and pointer glow.
-- [Lenis](https://lenis.dev/): smooth public-page anchors; destroyed on workspace navigation and when looping effects are paused or reduced motion is requested.
-- Lucide icons and locally bundled Geist / Geist Mono fonts.
-- Original Sauda layouts, orbit rings, waveforms, card layering, spotlight surfaces and workspace styling. These are not claimed as copied library components.
+The header pause button controls decorative effects. Reduced-motion preferences show the static sculpture and final text. The sculpture and silk stop offscreen or while the tab is hidden. WebGL2 failure retains the original static sculpture. Hero controls are 44px touch targets; portrait artwork stays above the copy.
 
-The previous editorial stylesheet, generated still-life artwork and unused fonts were removed from this branch. Git history retains the previous design.
+## Registry setup
 
-## Interactive behaviour
+This Vite app already uses TypeScript. It now also supports Tailwind CSS v4 and the shadcn component layout:
 
-The playground offers watches, kurtas and gift bags. Changing the budget updates the opening offer and total; a four-step illustrative conversation confirms a price, quantity and delivery or pickup. Playback is opt-in, can be paused, and has manual steps. Language previews are text only. FAQs expand independently of the shopping workflow. A header control pauses looping decorations; reduced-motion preferences also disable decorative motion.
+- Component path: `frontend/src/components/ui`, resolved as `@/components/ui`, not a second repository-root `/components/ui` directory. Keeping this path consistent lets registry imports resolve without duplicate components.
+- Utility helper: `frontend/src/lib/utils.ts` (`@/lib/utils`), using `clsx` and `tailwind-merge`.
+- Registry metadata: `frontend/components.json`.
+- Tailwind theme and utilities: `frontend/src/registry.css`; the Vite plugin is configured in `frontend/vite.config.ts`. Preflight is deliberately omitted to preserve the existing app reset.
+- The supplied shadcn `Button` uses Radix Slot and class-variance-authority. The rotating-word section uses it for real navigation links.
+- Motion comes from the already installed `motion/react`; no duplicate `framer-motion` runtime is needed.
 
-The protected workspace retains the existing API, sign-in, request form, saved requests, quote review and transcript functionality. All landing examples are explicitly labelled simulations. They do not call shops, place orders, or represent real quotes. Actual completed test-call results remain in the protected workspace. Automatic shop discovery and fresh phone-audio language verification remain outside this design change.
+Run `npm ci` from `frontend/` on a fresh checkout. To add a future shadcn component, run `npx shadcn@latest add accordion` from that directory, then inspect its styles against the existing app. No `shadcn init` or TypeScript migration is needed for this checkout.
 
-## Validation — 31 October 2026
+## Truthfulness and boundaries
 
-- TypeScript and Vite production build passed; effects and Motion use separate chunks.
-- Chrome desktop at 1440 × 1000 and phone at 390 × 844 visually checked, with no horizontal document overflow.
-- Checked product switching, budget keyboard adjustment and recalculation, conversation playback, manual steps, language selection and FAQ expansion.
-- Existing access-code sign-in through the proxy loaded the saved workspace requests. Request dialog checked without creating a request or making a call.
-- Browser errors checked during the preview flows. Reduced-motion implementation reviewed; OS preference emulation not performed.
-- Backend and agent settings were not changed. No new live-call or phone-language validation is claimed.
+The playground remains a labeled fictional text simulation. It does not make calls, capture a microphone, produce real merchant quotes, or claim savings. The authenticated workspace retains actual API-backed requests, recipient consent, readiness gating and quote evidence. No purchasing, reservations, deposits or commitments are introduced.
 
-Ignored local screenshots are under `private/design-preview-v2/`.
+## Local verification — 31 October 2026
 
-Licenses: `frontend/THIRD_PARTY_NOTICES.md` and `frontend/licenses/Apache-2.0.txt` include the Magic UI, Libraries.dev and bundled Paper Shaders notices.
+- TypeScript and Vite production build passed.
+- Chrome: desktop hero, pointer-driven liquid response, light/dark switching, pause/resume, reduced motion, and no-WebGL fallback exercised.
+- Responsive checks at 360, 390 and 768px found no horizontal document overflow. Desktop and mobile screenshots were inspected.
+- Playground scenario switching, Hindi text playback through all four messages, and navigation to the real workspace login exercised without signing in or changing saved data.
+- Canvas assertions exercised 25 primitive modes, animated matrix output, distinct voxel/halfblock/contour behavior, coverage, normal/inverted reveal masks and luminance/overlay boundaries. Silk animation and pause were checked from actual canvas pixels.
+- No browser page errors or call-creation POSTs were observed during the smoke run.
+- Screenshots: ignored `private/sculpture-review/`. Throwaway smoke scripts are removed after verification.
+- Backend tests, live calls, fresh phone-language behavior, real-device GPU performance and screen-reader software were not tested in this pass. The component is listed as MIT by 21st; separate image redistribution rights still need confirmation before public deployment.
+
+Licenses and source links: `frontend/THIRD_PARTY_NOTICES.md`.

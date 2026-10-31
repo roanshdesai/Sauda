@@ -1,6 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { MotionConfig } from "motion/react";
-import { ArrowLeft } from "lucide-react";
 import Landing from "./Landing";
 const Workspace = lazy(() => import("./App"));
 
@@ -20,28 +19,19 @@ export default function Site() {
   useEffect(() => {
     document.title = workspace
       ? "Sauda — Your shopping desk"
-      : "Sauda — You shop. We bargain.";
+      : "Sauda — Voice agents. Reimagined";
+  }, [workspace]);
+  useEffect(() => {
+    if (workspace) return;
+    const target = document.getElementById(location.hash.slice(1));
+    target?.scrollIntoView({ behavior: "instant", block: "start" });
   }, [workspace]);
   return (
     <MotionConfig reducedMotion="user">
       {workspace ? (
-        <div className="studio-workspace">
-          <div className="edition-bar">
-            <a href="#">
-              <ArrowLeft size={13} /> Back to Sauda
-            </a>
-            <span>
-              THE SHOPPING DESK <i> / </i> BUILDATHON EDITION
-            </span>
-          </div>
-          <Suspense
-            fallback={
-              <div className="loading-screen">Opening your shopping desk…</div>
-            }
-          >
-            <Workspace />
-          </Suspense>
-        </div>
+        <Suspense fallback={<main className="ws ws-loading"><p role="status">Loading…</p></main>}>
+          <Workspace />
+        </Suspense>
       ) : (
         <Landing />
       )}
