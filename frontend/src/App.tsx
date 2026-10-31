@@ -1,3 +1,4 @@
+import { SaudaMark as Mark } from "./components/Brand";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import {
@@ -73,15 +74,6 @@ const statusLabel: Record<string, string> = {
   stopped: "Stopped",
 };
 
-function Mark({ small = false }: { small?: boolean }) {
-  return (
-    <span className={"brand-mark" + (small ? " small" : "")} aria-hidden="true">
-      <svg viewBox="0 0 32 32">
-        <path d="M24 8H12a5 5 0 0 0 0 10h8a4 4 0 0 1 0 8H8" />
-      </svg>
-    </span>
-  );
-}
 function Badge({ record }: { record: ShoppingRecord }) {
   const active = record.calls.some((c) => ACTIVE.has(c.status));
   const uncertain = record.calls.some((c) => c.status === "dispatch_unknown");
@@ -148,8 +140,7 @@ function Login({ onLogin }: { onLogin: () => void }) {
           <h1>
             You have better
             <br />
-            things to do
-            <br />
+            things to do <br />
             than haggle.
           </h1>
           <p>
