@@ -386,6 +386,9 @@ def create_app(settings: Settings | None = None, provider=None):
     frontend = ROOT / "frontend/dist"
     if frontend.is_dir():
         app.mount("/assets", StaticFiles(directory=frontend / "assets"), name="assets")
+        for folder in ("images", "sculpture"):
+            if (frontend / folder).is_dir():
+                app.mount(f"/{folder}", StaticFiles(directory=frontend / folder), name=folder)
 
         @app.get("/", include_in_schema=False)
         def workspace():

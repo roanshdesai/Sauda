@@ -73,6 +73,9 @@ def test_workspace_serves_only_compiled_public_files(tmp_path, monkeypatch):
     (build / "assets").mkdir(parents=True)
     (build / "index.html").write_text("<html><title>Sauda</title></html>")
     (build / "assets/app.js").write_text("console.log('public asset')")
+    for folder in ("images", "sculpture"):
+        (build / folder).mkdir()
+        (build / folder / "sample.webp").write_bytes(b"public-image")
     (tmp_path / ".env").write_text("PRIVATE_VALUE=must-not-be-served")
     monkeypatch.setattr(module, "ROOT", tmp_path)
     with TestClient(
@@ -80,6 +83,9 @@ def test_workspace_serves_only_compiled_public_files(tmp_path, monkeypatch):
     ) as client:
         assert client.get("/").status_code == 200
         assert client.get("/assets/app.js").status_code == 200
+        for folder in ("images", "sculpture"):
+            assert client.get(f"/{folder}/sample.webp").content == b"public-image"
+            assert client.get(f"/{folder}/%2e%2e/%2e%2e/.env").status_code == 404
         for path in ["/.env", "/private/data.sqlite3", "/frontend/src/App.tsx"]:
             assert client.get(path).status_code == 404
         assert client.get("/v1/requests").status_code == 401
