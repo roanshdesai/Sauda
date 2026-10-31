@@ -1,4 +1,4 @@
-"""SQLite transactions reserve calls before dialing, including across process restarts."""
+"""Durable SQLite/Postgres transactions reserve calls before any provider request."""
 
 import json
 import sqlite3
@@ -6,6 +6,33 @@ from contextlib import contextmanager
 from datetime import UTC, datetime
 from pathlib import Path
 from uuid import uuid4
+
+import psycopg
+from psycopg.rows import dict_row
+
+DATABASE_ERRORS = (sqlite3.Error, psycopg.Error)
+INTEGRITY_ERRORS = (sqlite3.IntegrityError, psycopg.IntegrityError)
+
+
+class PostgresConnection:
+    """Adapt this module's fixed SQL to psycopg; values remain bound parameters."""
+
+    def __init__(self, db):
+        self.db = db
+
+    def execute(self, statement, parameters=()):
+        if statement == "BEGIN IMMEDIATE":
+            # Match SQLite's single-writer read/modify/write guarantee. Transaction-level
+            # advisory locking works through Neon's transaction pooler and across workers.
+            # No network/provider work happens while this lock is held.
+            return self.db.execute("SELECT pg_advisory_xact_lock(1935766884)")
+        return self.db.execute(statement.replace("?", "%s"), parameters)
+
+    def executescript(self, script):
+        for statement in script.split(";"):
+            if statement.strip():
+                self.execute(statement)
+
 
 TERMINAL = {
     "completed",
@@ -41,9 +68,14 @@ class Conflict(Exception):
 class Store:
     def __init__(self, path):
         self.path = str(path)
-        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        self.postgres = self.path.startswith(("postgres://", "postgresql://"))
+        if not self.postgres:
+            Path(path).parent.mkdir(parents=True, exist_ok=True)
         with self.connect() as db:
-            db.execute("PRAGMA journal_mode=WAL")
+            if self.postgres:
+                db.execute("BEGIN IMMEDIATE")
+            else:
+                db.execute("PRAGMA journal_mode=WAL")
             db.executescript("""
                 CREATE TABLE IF NOT EXISTS requests (
                     id TEXT PRIMARY KEY, idempotency_key TEXT UNIQUE NOT NULL,
@@ -57,10 +89,17 @@ class Store:
                     result TEXT, UNIQUE(request_id, seller_index)
                 );
             """)
-        Path(path).chmod(0o600)
+        if not self.postgres:
+            Path(path).chmod(0o600)
 
     @contextmanager
     def connect(self):
+        if self.postgres:
+            with psycopg.connect(
+                self.path, row_factory=dict_row, connect_timeout=15, prepare_threshold=None
+            ) as db:
+                yield PostgresConnection(db)
+            return
         db = sqlite3.connect(self.path, timeout=10)
         db.row_factory = sqlite3.Row
         db.execute("PRAGMA foreign_keys=ON")
@@ -153,6 +192,7 @@ class Store:
 
     def dispatched(self, call_id, execution_id):
         with self.connect() as db:
+            db.execute("BEGIN IMMEDIATE")
             db.execute(
                 "UPDATE calls SET execution_id=?, status='queued', updated_at=? WHERE id=? "
                 "AND status='dispatching'",
@@ -172,11 +212,12 @@ class Store:
                     "UPDATE calls SET execution_id=?, updated_at=? WHERE id=?",
                     (execution_id, now(), call_id),
                 )
-            except sqlite3.IntegrityError as exc:
+            except INTEGRITY_ERRORS as exc:
                 raise Conflict("Execution is already attached to another call") from exc
 
     def dispatch_failed(self, call_id, uncertain):
         with self.connect() as db:
+            db.execute("BEGIN IMMEDIATE")
             db.execute(
                 "UPDATE calls SET status=?, updated_at=? WHERE id=? AND status='dispatching'",
                 ("dispatch_unknown" if uncertain else "rejected", now(), call_id),

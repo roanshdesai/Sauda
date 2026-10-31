@@ -2,7 +2,6 @@ import asyncio
 import hmac
 import json
 import os
-import sqlite3
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Annotated
@@ -17,7 +16,7 @@ from fastapi.staticfiles import StaticFiles
 from backend.bolna import BolnaClient, ProviderError
 from backend.models import ReconcileCall, SessionLogin, ShoppingRequest, StartCalls, request_context
 from backend.quotes import assess_quote
-from backend.store import TERMINAL, Conflict, Store
+from backend.store import DATABASE_ERRORS, TERMINAL, Conflict, Store
 from backend.ui import COOKIE, SESSION_SECONDS, issue_session, require_same_origin, valid_session
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,8 +35,15 @@ class Settings:
 
     @classmethod
     def from_env(cls):
+        database = os.getenv("DATABASE_URL") or os.getenv(
+            "SAUDA_DATABASE", str(ROOT / "private/sauda.sqlite3")
+        )
+        if os.getenv("RENDER") == "true" and not database.startswith(
+            ("postgres://", "postgresql://")
+        ):
+            raise RuntimeError("Render requires DATABASE_URL; ephemeral SQLite is not supported")
         return cls(
-            database=os.getenv("SAUDA_DATABASE", str(ROOT / "private/sauda.sqlite3")),
+            database=database,
             api_token=os.getenv("SAUDA_API_TOKEN", ""),
             webhook_secret=os.getenv("SAUDA_WEBHOOK_SECRET", ""),
             bolna_api_key=os.getenv("BOLNA_API_KEY", ""),
@@ -322,7 +328,7 @@ def create_app(settings: Settings | None = None, provider=None):
                     store.dispatched(call["id"], response["execution_id"])
                 except ProviderError as exc:
                     store.dispatch_failed(call["id"], exc.uncertain)
-                except (sqlite3.Error, KeyError, TypeError):
+                except (*DATABASE_ERRORS, KeyError, TypeError):
                     # DB failure after provider acceptance also must never redial blindly.
                     store.dispatch_failed(call["id"], True)
 

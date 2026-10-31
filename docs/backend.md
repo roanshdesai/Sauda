@@ -74,7 +74,7 @@ Call dispatch waits for the individual API responses, bounded by `SAUDA_DISPATCH
 1. Add the Bolna API key to ignored `.env`; never commit it.
 2. Put only verified, consenting test recipients in `SAUDA_ALLOWED_NUMBERS`, comma-separated.
 3. Set `SAUDA_LIVE_CALLS_ENABLED=true` and restart when deliberately testing paid calls. No API calls are made at startup.
-4. Deploy behind HTTPS with a persistent private SQLite volume, one worker, ingress request/rate limits and protected operator access. The local server is not a public deployment.
+4. Deploy behind HTTPS with Neon PostgreSQL (see [Render setup](deployment.md)), or a persistent private SQLite volume on a host that supports one. Use one worker, ingress request/rate limits and protected operator access. The local server is not a public deployment.
 5. In **each existing agent → Extractions → Webhook Configuration**, set the public URL ending `/v1/webhooks/bolna`. Use **Add headers** to set `X-Sauda-Webhook-Secret` to the separate secret, enable relevant statuses, and save each agent. Do not put secrets in the URL. Configure proxy/application logs to omit bodies and authorization headers.
 6. Preview the complete request, then start an explicitly authorized roleplay call. Verify an actual webhook and final `completed` record. This path was verified with a consenting watch roleplay on 29 October; see the [live report](../reports/2026-10-29/live-backend-and-ui.md).
 

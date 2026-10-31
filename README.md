@@ -4,9 +4,11 @@ Sauda calls shops to check availability and negotiate nonbinding price quotes in
 
 ## Current state
 
-Two existing Bolna agents now connect to a **FastAPI + SQLite backend** and a **React workspace** for requests, calling progress, quote review and transcripts. A backend-originated watch roleplay completed on 29 October: the authenticated webhook saved the final result automatically, with ₹820 per watch plus ₹76 delivery and automatic hangup. These are fictional shop test results, not real-business quotes.
+Two existing Bolna agents connect to a **FastAPI backend with SQLite or PostgreSQL** and a **React workspace** for requests, calling progress, quote review and transcripts. A backend-originated watch roleplay completed on 29 October: the authenticated webhook saved the final result automatically, with ₹820 per watch plus ₹76 delivery and automatic hangup. These are fictional shop test results, not real-business quotes.
 
-The new v15 setup asks for English, Hindi or Hinglish at the opening, retains that choice, and configures separate English/Hindi audio profiles. Saved settings and targeted text tests are verified; a new phone test of this revision is still needed. See [current state](docs/current-state.md) and [test report](reports/2026-10-29/live-backend-and-ui.md).
+The v15 setup asks for English, Hindi or Hinglish at the opening, retains that choice, and configures separate English/Hindi audio profiles. The 31 October T-shirt roleplay stayed in English, negotiated ₹4,680 for three shirts and ended automatically; the user confirmed the audio was demo-ready. Quote extraction still requires human review. See [current state](docs/current-state.md) and the [latest test report](reports/2026-10-31/tshirt-v15-test.md).
+
+For persistent free hosting, use the [Render + Neon setup](docs/deployment.md). Deployment configuration and local PostgreSQL tests do not by themselves establish a live hosted deployment.
 
 Build the UI before starting the backend:
 
