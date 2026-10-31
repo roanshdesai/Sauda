@@ -3,6 +3,16 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          motion: ["motion/react"],
+          effects: ["thinking-orbs", "metal-fx"],
+        },
+      },
+    },
+  },
   server: {
     proxy: { "/v1": { target: "http://127.0.0.1:8000", changeOrigin: false } },
   },

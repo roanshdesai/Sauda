@@ -1,55 +1,45 @@
-# Sauda — The art of asking
+# Sauda — You shop. We bargain.
 
-An alternate public landing page and shopping workspace, built from the UI resource catalogue and the user's Sravas reference. This is a separate design branch, not a replacement for the original workspace.
+An alternate public landing page and shopping workspace using the user's UI-LINKS.md catalogue. The selected direction is light, playful tech with bold colours and layered components: violet type, lime quote cards, yellow shop cards and lavender controls.
 
-## Branches and previews
+## Branches and local preview
 
 - Original: `codex/sauda-live-test-ui`, preserved at `8f107dec6ef21f364e0611c753ad8033b58a265b`.
-- Alternate: `codex/sauda-expressive-ui`, based on that exact revision.
-- Alternate checkout: `/Users/roanshdesai/Developer/Sauda-expressive`.
-- Local landing: `http://127.0.0.1:5174/`.
-- Local workspace: `http://127.0.0.1:5174/#/workspace`.
-- The original backend and preview remain on port 8000. The alternate Vite server proxies `/v1` to that backend, using the existing session cookie and access code.
+- Alternate: `codex/sauda-expressive-ui`; draft PR #3 targets the original UI branch.
+- Checkout: `/Users/roanshdesai/Developer/Sauda-expressive`.
+- Landing: `http://127.0.0.1:5174/`; workspace: `http://127.0.0.1:5174/#/workspace`.
+- Start the existing backend on port 8000, then run `npm ci` and `npm run dev -- --port 5174 --strictPort` from `frontend/`.
+- `npm run build` produces the frontend distribution. The dev server proxies `/v1` to port 8000 with same-origin session handling.
 
-Run the existing backend first, then in this checkout's `frontend` directory:
+The alternate has not been deployed to a public host. No credentials, environment file, database or recordings are committed.
 
-```sh
-npm ci
-npm run dev -- --port 5174 --strictPort
-```
+## Design library components
 
-Build with `npm run build`. The backend's existing static-file handler can serve that build when running from this checkout with its own configured environment. No environment file, database or credentials are committed. This alternate has not been deployed to a public host.
+- [Libraries.dev Thinking Orbs](https://libraries.dev/orbs), installed as `thinking-orbs`: animated agent centre with light theme, pause and reduced-motion handling.
+- [Libraries.dev Liquid Metal](https://libraries.dev/metal), installed as `metal-fx`: WebGL metallic action border with the library's non-WebGL fallback.
+- [Magic UI](https://magicui.design/docs/components): adapted Animated Beam, Border Beam, Blur Fade and Number Ticker. MIT notice retained; local styles, pause/reduced motion and Indian number formatting added.
+- [Motion](https://motion.dev/docs/react): chat transitions, language selection, layout indicators, accordion transitions, magnetic links and pointer glow.
+- [Lenis](https://lenis.dev/): smooth public-page anchors; destroyed on workspace navigation and when looping effects are paused or reduced motion is requested.
+- Lucide icons and locally bundled Geist / Geist Mono fonts.
+- Original Sauda layouts, orbit rings, waveforms, card layering, spotlight surfaces and workspace styling. These are not claimed as copied library components.
 
-## Design and libraries
+The previous editorial stylesheet, generated still-life artwork and unused fonts were removed from this branch. Git history retains the previous design.
 
-- [Sravas](https://www.sravas.com/): reference for warm editorial typography, tactile imagery and a story-led page. No Sravas assets, copy or code were copied.
-- [Magic UI](https://magicui.design/docs/components): adapted Blur Fade and Number Ticker components with the MIT notice retained in `frontend/THIRD_PARTY_NOTICES.md`.
-- [Motion](https://motion.dev/docs/react): entrance reveals, layout transitions, conversation steps, language transitions, hero parallax and reading progress.
-- [Lenis](https://lenis.dev/): smooth anchor scrolling on the public landing only. Destroyed on workspace entry; disabled for reduced-motion preferences.
-- Lucide icons; locally bundled Instrument Serif, DM Sans and Geist Mono fonts.
-- Original CSS for the moving shopping-list strip, receipt, paper note, wave illustration and workspace theme. These are not claimed as downloaded library components.
+## Interactive behaviour
 
-The landing is public; the workspace remains access-code protected. It reuses the existing API, request form, quote review, transcript and activity components. All landing prices and conversations are explicitly illustrative. The page does not perform calls, discover shops or place orders. Language previews are text only. The FAQ records the remaining phone-audio verification limit.
+The playground offers watches, kurtas and gift bags. Changing the budget updates the opening offer and total; a four-step illustrative conversation confirms a price, quantity and delivery or pickup. Playback is opt-in, can be paused, and has manual steps. Language previews are text only. FAQs expand independently of the shopping workflow. A header control pauses looping decorations; reduced-motion preferences also disable decorative motion.
 
-Reduced-motion handling is implemented for parallax, Lenis, reveals, number animation and decorative loops. The shopping strip has a pause button. Negotiation playback starts only on user action and offers manual step controls. FAQs use native `details` elements. Workspace code is lazy loaded after navigation.
+The protected workspace retains the existing API, sign-in, request form, saved requests, quote review and transcript functionality. All landing examples are explicitly labelled simulations. They do not call shops, place orders, or represent real quotes. Actual completed test-call results remain in the protected workspace. Automatic shop discovery and fresh phone-audio language verification remain outside this design change.
 
-## Validation — 29 October 2026
+## Validation — 31 October 2026
 
-- TypeScript and production Vite build passed.
-- Desktop Chrome at 1576px and mobile at 390 × 844 were visually inspected. No horizontal document overflow at those sizes.
-- Verified navigation to workspace and back, mobile navigation, case switching, manual conversation steps, final price/quantity/delivery updates, and Hindi preview.
-- Existing session authenticated and loaded all three saved requests. Sign-out and access-code sign-in passed through the Vite proxy.
-- Desktop and mobile request dialogs opened and were visually checked; no new shopping request or phone call was made for this design check.
-- Browser error logs were empty during the checked flows.
-- Reduced-motion code was reviewed; OS-level preference emulation was not exercised.
-- API/backend source and agent settings were not changed. Earlier backend test results belong to the base branch; this validation does not claim a new live call or new phone-language proof.
+- TypeScript and Vite production build passed; effects and Motion use separate chunks.
+- Chrome desktop at 1440 × 1000 and phone at 390 × 844 visually checked, with no horizontal document overflow.
+- Checked product switching, budget keyboard adjustment and recalculation, conversation playback, manual steps, language selection and FAQ expansion.
+- Existing access-code sign-in through the proxy loaded the saved workspace requests. Request dialog checked without creating a request or making a call.
+- Browser errors checked during the preview flows. Reduced-motion implementation reviewed; OS preference emulation not performed.
+- Backend and agent settings were not changed. No new live-call or phone-language validation is claimed.
 
-Local review captures (ignored by Git): `private/design-preview/landing.png`, `private/design-preview/workspace.png`, `private/design-preview/mobile.png`.
+Ignored local screenshots are under `private/design-preview-v2/`.
 
-## Hero artwork
-
-Created with the built-in imagegen tool, then copied into the project as `frontend/public/images/sauda-still-life.png` (1254 × 1254). It depicts shopping objects; it is not product-stock evidence or an actual shop photograph.
-
-Final generation prompt:
-
-> Use case: stylized-concept. Asset type: premium web landing page hero artwork for Sauda, a shopping negotiation assistant. Create a highly art-directed photorealistic 3D still life on a seamless warm ivory #f4f1e9 studio floor/background. A sculptural vermilion-red vintage telephone handset, curving coiled cord, stands leaning diagonally against a large beautiful folded kraft-paper shopping bag with twisted paper handles. Small ivory shopping receipt curling out of the bag, one sage-green folded garment partly visible, and two minimal small children's wristwatches with round plain colorful faces at the base. The telephone handset is the bold central focal point, the bag slightly behind. Sophisticated editorial product photography, playful yet expensive, tactile paper fibers, matte red lacquer, realistic soft directional sunlight from top left casting broad shadows rightward. Composition: square image, full still life centered with generous clear ivory margin all around, object occupies 75 percent of frame. Camera elevated three-quarter view, not isometric, 85mm product lens. Rich tactile details, sculptural volume, harmonious colors vermilion, kraft tan, pale sage, cream. No human hands, no people, no lettering, no text, no logos, no UI, no watermark. This is a standalone artwork to be composited into a cream website, not a website screenshot.
+Licenses: `frontend/THIRD_PARTY_NOTICES.md` and `frontend/licenses/Apache-2.0.txt` include the Magic UI, Libraries.dev and bundled Paper Shaders notices.

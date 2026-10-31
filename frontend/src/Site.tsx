@@ -20,12 +20,12 @@ export default function Site() {
   useEffect(() => {
     document.title = workspace
       ? "Sauda — Your shopping desk"
-      : "Sauda — A little talk. A better deal.";
+      : "Sauda — You shop. We bargain.";
   }, [workspace]);
   return (
     <MotionConfig reducedMotion="user">
       {workspace ? (
-        <div className="editorial-workspace">
+        <div className="studio-workspace">
           <div className="edition-bar">
             <a href="#">
               <ArrowLeft size={13} /> Back to Sauda
