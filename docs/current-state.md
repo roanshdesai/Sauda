@@ -1,3 +1,5 @@
+> Update — 31 October: [Primary v15 T-shirt phone test](../reports/2026-10-31/tshirt-v15-test.md) completed with English-only saved transcript, a negotiated INR 4,680 estimate for three items, and agent-initiated hangup. The user confirmed the actual voice stayed in English and was demo-ready; quote evidence still requires review. The dated configuration/history below remains the 29 October baseline.
+
 # Current verified state — 29 October 2026
 
 ## Saved agents
