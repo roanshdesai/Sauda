@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: sauda
+    runtime: docker
+    plan: free
+    region: singapore
+    healthCheckPath: /health
+    autoDeployTrigger: "off"
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SAUDA_API_TOKEN
+        generateValue: true
+      - key: SAUDA_WEBHOOK_SECRET
+        generateValue: true
+      - key: BOLNA_API_KEY
+        sync: false
+      - key: SAUDA_LIVE_CALLS_ENABLED
+        value: "false"
+      - key: SAUDA_ALLOWED_NUMBERS
+        sync: false
+      - key: SAUDA_DISPATCH_CONCURRENCY
+        value: "2"

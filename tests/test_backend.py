@@ -42,10 +42,15 @@ def payload():
     }
 
 
-@pytest.fixture
-def settings(tmp_path):
+@pytest.fixture(params=["sqlite", "postgres"])
+def settings(tmp_path, request):
+    database = (
+        request.getfixturevalue("postgres_url")
+        if request.param == "postgres"
+        else str(tmp_path / "sauda.sqlite3")
+    )
     return Settings(
-        database=str(tmp_path / "sauda.sqlite3"),
+        database=database,
         api_token=TOKEN,
         webhook_secret=HOOK,
         bolna_api_key="fake-test-key",
