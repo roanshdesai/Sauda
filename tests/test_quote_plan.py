@@ -1,7 +1,7 @@
 import importlib.util
-from pathlib import Path
 import unittest
 from decimal import Decimal
+from pathlib import Path
 
 spec = importlib.util.spec_from_file_location("quote_plan", Path(__file__).parents[1] / "tools/quote_plan.py")
 module = importlib.util.module_from_spec(spec)

@@ -4,9 +4,23 @@ Sauda calls shops to check availability and negotiate nonbinding price quotes in
 
 ## Current state
 
-Two existing Bolna agents are configured and have been tested with a consenting roleplay recipient. The repository now includes a **FastAPI + SQLite backend** for validated requests, deterministic offers, bounded concurrent call dispatch, saved progress, authenticated webhooks and conservative quote assessment. Both agents' webhooks are configured to a temporary local tunnel; a Bolna sample reached the authenticated endpoint, then failed execution-ID validation. Integration tests use a mocked provider, and a complete backend-originated live call remains unverified. The frontend and automatic failover remain unbuilt.
+Two existing Bolna agents now connect to a **FastAPI + SQLite backend** and a **React workspace** for requests, calling progress, quote review and transcripts. A backend-originated watch roleplay completed on 29 October: the authenticated webhook saved the final result automatically, with ₹820 per watch plus ₹76 delivery and automatic hangup. These are fictional shop test results, not real-business quotes.
 
-See the [backend setup and API guide](docs/backend.md). Live calling is disabled by default; preview requests without spending credits. After local setup, interactive API docs are at `http://127.0.0.1:8000/docs`.
+The new v15 setup asks for English, Hindi or Hinglish at the opening, retains that choice, and configures separate English/Hindi audio profiles. Saved settings and targeted text tests are verified; a new phone test of this revision is still needed. See [current state](docs/current-state.md) and [test report](reports/2026-10-29/live-backend-and-ui.md).
+
+Build the UI before starting the backend:
+
+```sh
+cd frontend
+npm ci
+npm run build
+cd ..
+uv sync --frozen
+# Populate ignored .env as described in docs/backend.md.
+uv run --env-file .env uvicorn backend.app:create_app --factory --host 127.0.0.1 --port 8000 --no-access-log
+```
+
+Open **http://127.0.0.1:8000**. Sign in using the private `SAUDA_API_TOKEN` as the workspace access code. The browser receives an eight-hour HttpOnly session; no secret is embedded in the bundle or localStorage. Live calling defaults off. Preparing a request never dials; starting a test call requires a separate confirmation and the backend allowlist. See the [backend guide](docs/backend.md) and [UI guide](docs/ui.md).
 
 Sauda is **quote-only**: no purchases, reservations, deposits, or payment commitments. Prompt instructions are not a substitute for backend input validation, evidence checks, or budget enforcement.
 
@@ -15,7 +29,7 @@ Sauda is **quote-only**: no purchases, reservations, deposits, or payment commit
 | Primary conversation model | Google Gemini 3.7 Flash |
 | Backup conversation model | OpenAI GPT-4.1 |
 | Voice / transcription | Sarvam Bulbul v3, Sumit / Deepgram nova-3 |
-| Conversation prompt | [v14](agents/prompts/prompt-v14.txt) |
+| Conversation prompt | [v15](agents/prompts/prompt-v15.txt) |
 | Quote extraction | [v8](agents/extraction/extraction-prompt-v8.txt), GPT 5.4 Mini |
 | Hangup | [Prompt-based automatic closing](agents/hangup-prompt-v1.txt) |
 
@@ -25,7 +39,7 @@ See [current state](docs/current-state.md) and [configuration](agents/configurat
 
 - Make concrete, nonbinding offers from the current request's budget; do not disclose the ceiling.
 - Use up to three distinct offers, increasing only after seller resistance. Respect a clear refusal or opt-out.
-- Match the seller's language and keep the closing in that language.
+- Establish English, Hindi or Hinglish at the opening and keep it through closing unless explicitly asked to switch.
 - Confirm exact quantity/variant, unit versus total price, mandatory charges, and pickup/delivery timing.
 - Ask for free delivery when requested; record additional delivery fees separately when the user's budget allows them.
 - End after the final quote-only recap and thanks. Phone hangup evidence is recorded per test; a saved toggle alone is not proof.
@@ -50,6 +64,7 @@ The watch example has a merchandise ceiling of ₹27,008, with delivery addition
 - `docs/archive/`: original project plans and earlier reports, retained as history.
 - `tools/quote_plan.py`: product-independent numeric offer preparation.
 - `backend/`: FastAPI endpoints, Bolna adapter, SQLite persistence and quote assessment.
+- `frontend/`: Geist-based React workspace, served by the backend after a production build.
 - `docs/backend.md`: local setup, endpoint contract, webhook configuration and operating limits.
 - `tests/`: meaningful budget-scope and arithmetic checks.
 

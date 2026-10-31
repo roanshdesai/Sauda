@@ -1,0 +1,23 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* Keep the existing app reset; registry utilities do not install Preflight. */
+@theme inline {
+  --color-background: var(--page, #ebe9e5);
+  --color-foreground: var(--ink, #151514);
+  --color-primary: var(--ink, #151514);
+  --color-primary-foreground: var(--page, #ebe9e5);
+  --color-secondary: var(--surface, #e1dfd9);
+  --color-secondary-foreground: var(--ink, #151514);
+  --color-muted: var(--surface, #e1dfd9);
+  --color-muted-foreground: var(--muted, #65645f);
+  --color-accent: var(--surface, #e1dfd9);
+  --color-accent-foreground: var(--ink, #151514);
+  --color-destructive: #a52d43;
+  --color-destructive-foreground: #ffffff;
+  --color-border: var(--line, #ceccc5);
+  --color-input: var(--line, #ceccc5);
+  --color-ring: var(--ink, #151514);
+  --radius-md: 0.375rem;
+}

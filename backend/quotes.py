@@ -46,6 +46,7 @@ def assess_quote(request: ShoppingRequest, extracted_data, transcript: str):
             "Confirm inclusions before using these arithmetic estimates."
         ),
         "issues": [],
+        "evidence_match_mode": "seller_turn_substring_whitespace_normalized",
     }
     try:
         quote = extraction_field(extracted_data)
@@ -63,8 +64,13 @@ def assess_quote(request: ShoppingRequest, extracted_data, transcript: str):
     )
     seller_turns = [text for role, text in turns if role.lower() in {"user", "seller", "human"}]
     agent_turns = [text for role, text in turns if role.lower() in {"assistant", "agent"}]
+
+    def normalized(text):
+        return " ".join(text.split())
+
     if not quote.evidence_quotes or any(
-        not excerpt.strip() or not any(excerpt in turn for turn in seller_turns)
+        not excerpt.strip()
+        or not any(normalized(excerpt) in normalized(turn) for turn in seller_turns)
         for excerpt in quote.evidence_quotes
     ):
         issues.append("missing_or_non_seller_evidence")

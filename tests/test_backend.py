@@ -290,6 +290,20 @@ def test_webhook_uses_authoritative_provider_not_body(settings, payload):
         assert quote["verified_all_in_total_inr"] is None
         assert quote["eligible_for_recommendation"] is False
         assert completed["calls"][0]["result"]["provider_cost_cents"] == 16
+        # The list is authenticated and omits full transcripts; opening a detail
+        # still returns the saved conversation, without mutating stored evidence.
+        assert client.get("/v1/requests").status_code == 401
+        listing = client.get("/v1/requests?limit=1", headers=AUTH).json()["items"]
+        assert len(listing) == 1
+        assert "transcript" not in listing[0]["calls"][0]["result"]
+        assert (
+            client.get(f"/v1/requests/{request_id}", headers=AUTH).json()["calls"][0]["result"][
+                "transcript"
+            ]
+            == watch_transcript()
+        )
+        assert client.get("/v1/requests?limit=0", headers=AUTH).status_code == 422
+        assert client.get("/v1/requests?limit=101", headers=AUTH).status_code == 422
         client.post("/v1/webhooks/bolna", json=forged, headers=headers)
         again = client.get(f"/v1/requests/{request_id}", headers=AUTH).json()
         assert again == completed
@@ -539,3 +553,23 @@ def test_strict_ceiling_rejects_equality_in_assessment(payload):
         ShoppingRequest.model_validate(payload), {"quote_evidence_json": quote}, watch_transcript()
     )
     assert result["budget_status"] == "potentially_over_budget"
+
+
+def test_seller_evidence_tolerates_transcription_spacing_only(payload):
+    quote = watch_evidence()
+    quote["evidence_quotes"] = ["it includes all tax and delivery is seventy six rupees"]
+    transcript = "user: it includes  all tax and delivery is  seventy six rupees"
+    result = assess_quote(
+        ShoppingRequest.model_validate(payload), {"quote_evidence_json": quote}, transcript
+    )
+    assert "missing_or_non_seller_evidence" not in result["issues"]
+    transcript = "assistant: it includes all tax and delivery is seventy six rupees\nuser: thanks"
+    result = assess_quote(
+        ShoppingRequest.model_validate(payload), {"quote_evidence_json": quote}, transcript
+    )
+    assert "missing_or_non_seller_evidence" in result["issues"]
+    transcript = "user: it includes some tax and delivery is seventy six rupees"
+    result = assess_quote(
+        ShoppingRequest.model_validate(payload), {"quote_evidence_json": quote}, transcript
+    )
+    assert "missing_or_non_seller_evidence" in result["issues"]

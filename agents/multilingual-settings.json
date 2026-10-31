@@ -1,0 +1,66 @@
+{
+  "reference_only": true,
+  "note": "Sanitized settings reference, not a complete API update payload. Preserve other agent tasks, webhook headers and rich-text composition when updating.",
+  "base_transcriber_language": "en",
+  "base_synthesizer_language": "en",
+  "single_prompt_ui": true,
+  "composition_default_language": "en",
+  "multilingual_config": {
+    "enabled": true,
+    "languages": {
+      "en": {
+        "agent_name": "Sauda",
+        "synthesizer": {
+          "stream": true,
+          "caching": true,
+          "provider": "sarvam",
+          "buffer_size": 220,
+          "audio_format": "wav",
+          "provider_config": {
+            "model": "bulbul:v3",
+            "speed": 1.0,
+            "voice": "Sumit",
+            "language": "en",
+            "loudness": 1.0,
+            "voice_id": "sumit"
+          },
+          "pronunciation_rules": null
+        },
+        "transcriber": {
+          "language": "en"
+        },
+        "system_prompt": "See prompts/prompt-v15.txt (full prompt saved on both language profiles).",
+        "handoff_message": null,
+        "welcome_message": null
+      },
+      "hi": {
+        "agent_name": "Sauda",
+        "synthesizer": {
+          "stream": true,
+          "caching": true,
+          "provider": "sarvam",
+          "buffer_size": 220,
+          "audio_format": "wav",
+          "provider_config": {
+            "model": "bulbul:v3",
+            "speed": 1.0,
+            "voice": "Sumit",
+            "language": "hi",
+            "loudness": 1.0,
+            "voice_id": "sumit"
+          },
+          "pronunciation_rules": null
+        },
+        "transcriber": {
+          "language": "hi"
+        },
+        "system_prompt": "See prompts/prompt-v15.txt (full prompt saved on both language profiles).",
+        "handoff_message": null,
+        "welcome_message": null
+      }
+    },
+    "active_language": "en",
+    "language_switch_trigger": "caller_requested",
+    "switch_tool_description": null
+  }
+}
